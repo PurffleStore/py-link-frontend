@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --navy-950: #060d1a;
+  --navy-900: #0a1628;
+  --navy-800: #0f2240;
+  --navy-700: #163058;
+  --navy-600: #1e3f6e;
+  --navy-400: #2f5f9e;
+  --navy-300: #4a7fc1;
+
+  --blue-50:  #eff6ff;
+  --blue-100: #dbeafe;
+
+  --border: #e8eef8;
+  --border-med: #d4dff0;
+
+  --surface: #ffffff;
+
+  --text-primary: #0c1a2e;
+  --text-secondary: #5a6f8a;
+  --text-tertiary: #94a3b8;
+
+  --mono: 'JetBrains Mono', monospace ;
+  --sans: 'Plus Jakarta Sans', sans-serif;
+
+  --shadow-sm: 0 1px 3px rgba(10,40,80,0.06), 0 1px 2px rgba(10,40,80,0.04);
+  --shadow-md: 0 4px 16px rgba(10,40,80,0.1), 0 1px 4px rgba(10,40,80,0.05);
+  --shadow-lg: 0 12px 40px rgba(10,40,80,0.14), 0 2px 8px rgba(10,40,80,0.06);
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  color: #fff;
+  background: var(--navy-950);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Generate page fills full viewport */
+app-generate, app-root > app-generate {
+  display: flex;
+  height: 100vh;
+  background: #f4f7fb;
+}

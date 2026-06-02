@@ -1,0 +1,546 @@
+<div class="shell">
+
+  <!-- ═══════════ SIDEBAR ═══════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">
+        <img src="assets/images/py-logo.png" alt="PYLink">
+      </div>
+      <div class="brand-copy">
+        <span class="brand-name">PYLink</span>
+        <span class="brand-version">BETA v2.1</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-label">PLATFORM</div>
+      <button
+        class="nav-item"
+        [class.nav-active-li]="selectedPlatform === 'linkedin'"
+        type="button"
+        (click)="selectPlatform('linkedin')"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+            <path d="M6.94 8.5H3.56V20h3.38V8.5Zm-1.69-5.5A1.96 1.96 0 0 0 3.31 5a1.95 1.95 0 0 0 1.91 2 1.98 1.98 0 0 0 2-2 1.95 1.95 0 0 0-1.97-2Zm15.19 9.84c0-3.46-1.85-5.07-4.31-5.07a3.72 3.72 0 0 0-3.36 1.85V8.5H9.39c.04.74 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.88-1.38 1.91-1.38 1.35 0 1.89 1.03 1.89 2.55V20h3.37v-7.16Z"/>
+          </svg>
+        </span>
+        <span>LinkedIn</span>
+        @if (selectedPlatform === 'linkedin') {
+          <span class="nav-dot"></span>
+        }
+      </button>
+      <button
+        class="nav-item"
+        [class.nav-active-tw]="selectedPlatform === 'twitter'"
+        type="button"
+        (click)="selectPlatform('twitter')"
+      >
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </span>
+        <span>Twitter / X</span>
+        @if (selectedPlatform === 'twitter') {
+          <span class="nav-dot"></span>
+        }
+      </button>
+      <button class="nav-item nav-disabled" type="button" disabled>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </span>
+        <span>Facebook</span>
+        <span class="nav-soon">Soon</span>
+      </button>
+      <button class="nav-item nav-disabled" type="button" disabled>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </span>
+        <span>Instagram</span>
+        <span class="nav-soon">Soon</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-meta">
+      <div class="meta-row">
+        <span class="meta-key">Last run</span>
+        <span class="meta-val">{{ lastRunText }}</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-key">Sources</span>
+        <span class="meta-val">{{ activeSourceCount }} / {{ totalSourceCount }}</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════ MAIN PANEL ═══════════ -->
+  <main class="main-panel">
+    <div class="main-scroll">
+
+      <!-- Page heading -->
+      <div class="page-heading">
+        <div class="page-heading-left">
+          <h1 class="page-title">Intelligence Dashboard</h1>
+          <p class="page-sub">AI-powered content workflow · smart article selection</p>
+        </div>
+        <div class="heading-chips">
+          <div class="platform-chip" [class.chip-tw]="selectedPlatform === 'twitter'">
+            @if (selectedPlatform === 'linkedin') {
+              <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M6.94 8.5H3.56V20h3.38V8.5Zm-1.69-5.5A1.96 1.96 0 0 0 3.31 5a1.95 1.95 0 0 0 1.91 2 1.98 1.98 0 0 0 2-2 1.95 1.95 0 0 0-1.97-2Zm15.19 9.84c0-3.46-1.85-5.07-4.31-5.07a3.72 3.72 0 0 0-3.36 1.85V8.5H9.39c.04.74 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.88-1.38 1.91-1.38 1.35 0 1.89 1.03 1.89 2.55V20h3.37v-7.16Z"/></svg>
+              LinkedIn
+            } @else {
+              <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Twitter / X
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- ── METRIC CARDS ── -->
+      <div class="metrics-row">
+
+        <div class="metric-card metric-blue clickable" (click)="openSourceManager()" title="Manage sources">
+          <div class="metric-icon-wrap metric-icon-blue">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+              <path d="M9 6a3 3 0 1 1 6 0 3 3 0 0 1-6 0zM1 7a3 3 0 0 1 3-3h1a4 4 0 0 0 8 0h1a3 3 0 0 1 3 3v1H1V7zm0 4h18v6a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-6z"/>
+            </svg>
+          </div>
+          <div class="metric-body">
+            <div class="metric-label">ACTIVE SOURCES</div>
+            <div class="metric-value">{{ activeSourceCount }}<span class="metric-unit">/ {{ totalSourceCount }}</span></div>
+          </div>
+          <div class="metric-arrow">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M4.5 1.5l7 6.5-7 6.5"/></svg>
+          </div>
+        </div>
+
+        <div class="metric-card metric-violet">
+          <div class="metric-icon-wrap metric-icon-violet">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-12a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l2.828 2.829a1 1 0 1 0 1.415-1.415L11 9.586V6z"/>
+            </svg>
+          </div>
+          <div class="metric-body">
+            <div class="metric-label">
+              LOOKBACK WINDOW
+              <button class="metric-edit-btn" type="button" (click)="toggleStatEdit('lookback')" title="Edit">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>
+              </button>
+            </div>
+            @if (editingField !== 'lookback') {
+              <div class="metric-value">{{ lookbackHours }}<span class="metric-unit">hrs</span></div>
+            } @else {
+              <input class="metric-inline-input" type="number" min="24" max="168" [(ngModel)]="lookbackDraft"
+                (blur)="saveStatEdit('lookback')" (keydown.enter)="saveStatEdit('lookback')" (keydown.escape)="cancelStatEdit()">
+            }
+          </div>
+        </div>
+
+        <div class="metric-card metric-emerald">
+          <div class="metric-icon-wrap metric-icon-emerald">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+              <path d="M2 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5zm0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z"/>
+            </svg>
+          </div>
+          <div class="metric-body">
+            <div class="metric-label">
+              POSTS TO GENERATE
+              <button class="metric-edit-btn" type="button" (click)="toggleStatEdit('posts')" title="Edit">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>
+              </button>
+            </div>
+            @if (editingField !== 'posts') {
+              <div class="metric-value">{{ postsToGenerate }}<span class="metric-unit">posts</span></div>
+            } @else {
+              <input class="metric-inline-input" type="number" min="1" max="5" [(ngModel)]="postsDraft"
+                (input)="handlePostsDraftInput()" (blur)="saveStatEdit('posts')" (keydown.enter)="saveStatEdit('posts')" (keydown.escape)="cancelStatEdit()">
+            }
+          </div>
+        </div>
+
+        <div class="metric-card metric-amber">
+          <div class="metric-icon-wrap metric-icon-amber">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0 0 16 4H4a2 2 0 0 0-1.997 1.884z"/>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.118z"/>
+            </svg>
+          </div>
+          <div class="metric-body">
+            <div class="metric-label">
+              EMAIL RECIPIENT
+              <button class="metric-edit-btn" type="button" (click)="enableEmailEdit()" title="Edit">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>
+              </button>
+            </div>
+            @if (!isEmailEditMode) {
+              <div class="metric-email" [class.metric-email-empty]="!currentEmail">{{ currentEmail || 'No email set' }}</div>
+            } @else {
+              <div class="email-edit-wrap">
+                <input type="email" class="metric-inline-input metric-email-input" [(ngModel)]="emailDraft"
+                  placeholder="Enter email" (input)="onEmailDraftChange()" (keydown.enter)="saveEmail()" (keydown.escape)="cancelEmailEdit()">
+                <div class="email-edit-btns">
+                  <button class="email-action save" type="button" (click)="saveEmail()">✓</button>
+                  <button class="email-action cancel" type="button" (click)="cancelEmailEdit()">✕</button>
+                </div>
+              </div>
+            }
+            @if (emailError) {
+              <div class="email-error-text">{{ emailError }}</div>
+            }
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── MAIN CONTENT GRID ── -->
+      <div class="content-grid">
+
+        <!-- Left column -->
+        <div class="col-left">
+
+          <!-- Config card -->
+          <div class="panel">
+            <div class="panel-head">
+              <span class="panel-head-dot"></span>
+              Configuration
+            </div>
+
+            <div class="config-block">
+              <div class="config-label-row">
+                <span class="config-label">Lookback window</span>
+                <span class="config-badge config-badge-violet">{{ lookbackHours }} hrs</span>
+              </div>
+              <input type="range" class="styled-range range-violet" min="24" max="168" step="24"
+                [(ngModel)]="lookbackHours" (input)="handleLookbackSliderChange()">
+              <div class="tick-row"><span>24h</span><span>72h</span><span>120h</span><span>168h</span></div>
+            </div>
+
+            <div class="config-block">
+              <div class="config-label-row">
+                <span class="config-label">Posts to generate</span>
+                <span class="config-badge config-badge-emerald">{{ postsLabel }}</span>
+              </div>
+              <input type="range" class="styled-range range-emerald" min="1" max="5" step="1"
+                [(ngModel)]="postsToGenerate" (input)="handlePostsSliderChange()">
+              <div class="tick-row"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+            </div>
+          </div>
+
+          <!-- Sources card -->
+          <div class="panel">
+            <div class="panel-head">
+              <span class="panel-head-dot dot-blue"></span>
+              Active Sources
+              <span class="panel-count">{{ activeSourceCount }} active</span>
+            </div>
+
+            <div class="tier-pills-grid">
+              @for (tier of tierOrder; track tier) {
+                <button class="tier-pill" [class]="'tier-pill-' + tier" type="button" (click)="openSourceManagerWithFilter(tier)">
+                  <span class="tier-pill-badge">{{ tier.toUpperCase() }}</span>
+                  <span class="tier-pill-text">{{ tierNames[tier].split('—')[1]?.trim() || tierNames[tier] }}</span>
+                  <span class="tier-pill-count">{{ getActiveCountForTier(tier) }}</span>
+                </button>
+              }
+            </div>
+
+            <button class="btn-manage" type="button" (click)="openSourceManager()">
+              <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.858 2.929 2.929 0 0 1 0 5.858z"/></svg>
+              Manage sources
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Right column -->
+        <div class="col-right">
+
+          <!-- Run card -->
+          <div class="run-card" [class.run-card-tw]="selectedPlatform === 'twitter'">
+            <div class="run-card-bg-orb"></div>
+
+            <div class="run-card-top">
+              <div class="run-card-eyebrow">
+                @if (selectedPlatform === 'twitter') {
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                } @else {
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M6.94 8.5H3.56V20h3.38V8.5Zm-1.69-5.5A1.96 1.96 0 0 0 3.31 5a1.95 1.95 0 0 0 1.91 2 1.98 1.98 0 0 0 2-2 1.95 1.95 0 0 0-1.97-2Zm15.19 9.84c0-3.46-1.85-5.07-4.31-5.07a3.72 3.72 0 0 0-3.36 1.85V8.5H9.39c.04.74 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.88-1.38 1.91-1.38 1.35 0 1.89 1.03 1.89 2.55V20h3.37v-7.16Z"/></svg>
+                }
+                {{ platformSummary }}
+              </div>
+              <div class="run-card-title">{{ runCardTitle }}</div>
+              <div class="run-card-sub">{{ runCardSub }}</div>
+            </div>
+
+            <button class="btn-run" type="button" [disabled]="!canGenerate" (click)="runWorkflow()">
+              <span class="btn-run-icon">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14">
+                  <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                </svg>
+              </span>
+              {{ runButtonLabel }}
+            </button>
+
+            @if (selectedPlatform === 'twitter') {
+              <div class="twitter-notice">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+                Twitter mode: AI drafts tweets up to 280 chars and emails them to you. Auto-posting via Twitter API comes in Phase 2.
+              </div>
+            }
+
+            <div class="status-banner"
+              [class.status-show]="statusMessageVisible"
+              [class.status-ok]="statusMessageType === 'success'"
+              [class.status-err]="statusMessageType === 'error'">
+              @if (statusMessageType === 'success') {
+                <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+              } @else {
+                <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/></svg>
+              }
+              {{ statusMessageText }}
+            </div>
+          </div>
+
+          <!-- Config summary -->
+          <div class="panel">
+            <div class="panel-head">
+              <span class="panel-head-dot dot-amber"></span>
+              Current Configuration
+            </div>
+            <div class="summary-grid">
+              <div class="summary-item">
+                <span class="summary-k">Platform</span>
+                <span class="summary-v">{{ platformSummary }}</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-k">Lookback</span>
+                <span class="summary-v">{{ lookbackHours }} hrs</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-k">Posts</span>
+                <span class="summary-v">{{ postsLabel }}</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-k">Sources</span>
+                <span class="summary-v">{{ activeSourceCount }} active</span>
+              </div>
+              <div class="summary-item summary-item-full">
+                <span class="summary-k">Email</span>
+                <span class="summary-v summary-v-email">{{ currentEmail || '—' }}</span>
+              </div>
+              <div class="summary-item summary-item-full">
+                <span class="summary-k">Last run</span>
+                <span class="summary-v">{{ lastRunText }}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /main-scroll -->
+  </main>
+
+</div>
+
+<!-- ═══════════ LOADING OVERLAY ═══════════ -->
+<div class="lm-overlay" [class.lm-overlay-active]="isLoadingOverlayOpen">
+  <div class="lm-box">
+    <div class="lm-border-ring" aria-hidden="true"></div>
+
+    <div class="lm-topbar">
+      <div class="lm-platform-chip" [class.lm-chip-tw]="selectedPlatform === 'twitter'">
+        @if (selectedPlatform === 'twitter') {
+          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Twitter / X
+        } @else {
+          <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M6.94 8.5H3.56V20h3.38V8.5Zm-1.69-5.5A1.96 1.96 0 0 0 3.31 5a1.95 1.95 0 0 0 1.91 2 1.98 1.98 0 0 0 2-2 1.95 1.95 0 0 0-1.97-2Zm15.19 9.84c0-3.46-1.85-5.07-4.31-5.07a3.72 3.72 0 0 0-3.36 1.85V8.5H9.39c.04.74 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.88-1.38 1.91-1.38 1.35 0 1.89 1.03 1.89 2.55V20h3.37v-7.16Z"/></svg>
+          LinkedIn
+        }
+      </div>
+      <div class="lm-timer">
+        <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11">
+          <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+        </svg>
+        {{ elapsedTimeText }}
+      </div>
+    </div>
+
+    <div class="lm-orb-wrap">
+      <div class="lm-ring lm-ring-1"></div>
+      <div class="lm-ring lm-ring-2"></div>
+      <div class="lm-ring lm-ring-3"></div>
+      <div class="lm-orb">
+        <div class="lm-pulse"></div>
+        <div class="lm-pulse lm-pulse-2"></div>
+        <svg viewBox="0 0 32 32" fill="none" width="28" height="28">
+          <path d="M16 7L17.2 13.8L24 16L17.2 18.2L16 25L14.8 18.2L8 16L14.8 13.8Z" fill="white" opacity="0.95"/>
+          <circle cx="22" cy="10" r="1.5" fill="white" opacity="0.6"/>
+          <circle cx="10" cy="22" r="1" fill="white" opacity="0.4"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="lm-title">{{ loadingTitle }}</div>
+    <div class="lm-status">{{ aiStatusMessage }}</div>
+
+    <div class="lm-progress-wrap">
+      <div class="lm-progress-track">
+        <div class="lm-progress-fill"></div>
+        <div class="lm-progress-sheen"></div>
+      </div>
+      <div class="lm-dots">
+        <div class="lm-dot"></div>
+        <div class="lm-dot"></div>
+        <div class="lm-dot"></div>
+      </div>
+    </div>
+
+    <div class="lm-pills">
+      <div class="lm-pill">
+        <span class="lm-pill-label">Sources</span>
+        <span class="lm-pill-value">{{ activeSourceCount }} active</span>
+      </div>
+      <div class="lm-pill">
+        <span class="lm-pill-label">Posts</span>
+        <span class="lm-pill-value">{{ postsLabel }}</span>
+      </div>
+      <div class="lm-pill">
+        <span class="lm-pill-label">Lookback</span>
+        <span class="lm-pill-value">{{ lookbackHours }}h</span>
+      </div>
+    </div>
+
+    @if (isReconnecting) {
+      <div class="lm-reconnect">
+        <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/></svg>
+        Reconnecting…
+      </div>
+    }
+
+    <div class="lm-email-row">
+      <div class="lm-email-icon">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0 0 16 4H4a2 2 0 0 0-1.997 1.884z"/>
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.118z"/>
+        </svg>
+      </div>
+      <div class="lm-email-text">
+        <span class="lm-email-label">Sending results to</span>
+        <span class="lm-email-addr">{{ currentEmail }}</span>
+      </div>
+    </div>
+
+    <button class="lm-cancel" type="button" (click)="cancelWorkflow()">Cancel Workflow</button>
+  </div>
+</div>
+
+<!-- ═══════════ SOURCE MODAL ═══════════ -->
+<div class="modal-overlay" [class.modal-open]="isSourceModalOpen" (click)="closeSourceModal()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" style="color: #0a66c2;">
+          <path d="M9 6a3 3 0 1 1 6 0 3 3 0 0 1-6 0zM1 7a3 3 0 0 1 3-3h1a4 4 0 0 0 8 0h1a3 3 0 0 1 3 3v1H1V7zm0 4h18v6a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-6z"/>
+        </svg>
+        <div>
+          <h3>Manage Sources</h3>
+          <p>Toggle, add, or remove content sources</p>
+        </div>
+      </div>
+      <button class="modal-close-btn" type="button" (click)="closeSourceModal()">
+        <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/></svg>
+      </button>
+    </div>
+
+    <div class="modal-toolbar">
+      <div class="modal-search-wrap">
+        <svg class="modal-search-icon" viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zm-5.44 1.156a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/></svg>
+        <input type="text" class="modal-input" [(ngModel)]="currentSearchTerm" placeholder="Search sources…">
+      </div>
+      <div class="modal-add-wrap">
+        <input type="text" class="modal-input" [(ngModel)]="newSourceName"
+          [placeholder]="newSourcePlaceholder"
+          [class.input-highlight]="highlightNewSourceField"
+          (keydown.enter)="addNewSource()">
+        <button class="btn-add-source" type="button" (click)="addNewSource()">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+          Add Source
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-filters">
+      <span class="filter-label">FILTER:</span>
+      <button class="filter-chip" [class.filter-active]="!modalTierFilter" type="button" (click)="clearModalFilter()">All</button>
+      @for (tier of tierOrder; track tier) {
+        <button class="filter-chip" [class.filter-active]="modalTierFilter === tier" type="button" (click)="applyModalFilter(tier)">
+          {{ getTierButtonLabel(tier) }}
+        </button>
+      }
+    </div>
+
+    <div class="modal-body">
+      @if (filteredTierData.length) {
+        @for (section of filteredTierData; track section.tier) {
+          <div class="tier-section">
+            <div class="tier-section-head">
+              <div class="tier-section-title">
+                <span class="tier-section-name">{{ section.name }}</span>
+                <span class="tier-section-badge">{{ section.activeCount }}/{{ section.totalCount }} active</span>
+              </div>
+              <button class="toggle-all-btn" type="button" (click)="toggleTierAll(section.tier)">Toggle all</button>
+            </div>
+            <div class="sources-grid">
+              @for (source of section.sources; track source) {
+                <div class="source-chip" [class.source-active]="isSourceActive(source)">
+                  <div class="source-toggle" (click)="toggleSource(source)">
+                    <span class="source-check">
+                      @if (isSourceActive(source)) {
+                        <svg viewBox="0 0 12 12" fill="currentColor" width="9" height="9"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
+                      }
+                    </span>
+                    <span class="source-name">{{ source }}</span>
+                  </div>
+                  <button class="source-delete" type="button" (click)="deleteSource(source, section.tier)" title="Remove">
+                    <svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/></svg>
+                  </button>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      } @else {
+        <div class="modal-empty">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="28" height="28" style="opacity:0.25;"><path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM2 8a6 6 0 1 1 10.89 3.476l4.817 4.817a1 1 0 0 1-1.414 1.414l-4.816-4.816A6 6 0 0 1 2 8z"/></svg>
+          No sources found
+        </div>
+      }
+    </div>
+
+    <div class="modal-footer">
+      <div class="modal-footer-stats">
+        <span>Active: <strong>{{ activeSourceCount }}</strong></span>
+        <span>Total: <strong>{{ totalSourceCount }}</strong></span>
+      </div>
+      <div class="modal-footer-actions">
+        <button class="btn-footer-secondary" type="button" (click)="selectAllSources()">Select All</button>
+        <button class="btn-footer-secondary" type="button" (click)="deselectAllSources()">Deselect All</button>
+        <button class="btn-footer-primary" type="button" (click)="closeSourceModal()">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="postsLimitToast" [class.show]="postsLimitToastVisible">
+  <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+  Maximum 5 posts allowed
+</div>

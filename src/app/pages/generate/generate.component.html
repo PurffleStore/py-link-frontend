@@ -1,0 +1,661 @@
+<div class="gen-shell">
+
+
+
+  <!-- ══ RIGHT: STEP CONTENT ══ -->
+  <div class="step-area">
+
+    <!-- ───── STEP 1: PLATFORM ───── -->
+    <div class="step-page" *ngIf="currentStep === 'platform'">
+      <div class="step-heading">
+        <h2>Choose your platform</h2>
+        <p>Select where your AI-generated content will be published</p>
+      </div>
+
+      <div class="platform-cards">
+
+        <!-- LinkedIn -->
+        <button class="platform-card" [class.platform-active]="localPlatform === 'linkedin'"
+          type="button" (click)="selectPlatform('linkedin')">
+          <div class="platform-card-icon pci-li">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
+              <path d="M6.94 8.5H3.56V20h3.38V8.5Zm-1.69-5.5A1.96 1.96 0 0 0 3.31 5a1.95 1.95 0 0 0 1.91 2 1.98 1.98 0 0 0 2-2 1.95 1.95 0 0 0-1.97-2Zm15.19 9.84c0-3.46-1.85-5.07-4.31-5.07a3.72 3.72 0 0 0-3.36 1.85V8.5H9.39c.04.74 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.88-1.38 1.91-1.38 1.35 0 1.89 1.03 1.89 2.55V20h3.37v-7.16Z"/>
+            </svg>
+          </div>
+          <div class="platform-card-body">
+            <div class="platform-card-name">LinkedIn</div>
+            <div class="platform-card-desc">Professional long-form thought leadership posts, executive insights, and industry analysis.</div>
+            <div class="platform-card-tags">
+              <span>Up to 3000 chars</span>
+              <span>Professional tone</span>
+              <span>Hashtags + image prompts</span>
+            </div>
+          </div>
+          <div class="platform-card-check" *ngIf="localPlatform === 'linkedin'">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+          </div>
+        </button>
+
+        <!-- Twitter / X -->
+        <button class="platform-card" [class.platform-active]="localPlatform === 'twitter'"
+          type="button" (click)="selectPlatform('twitter')">
+          <div class="platform-card-icon pci-tw">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </div>
+          <div class="platform-card-body">
+            <div class="platform-card-name">Twitter / X</div>
+            <div class="platform-card-desc">Sharp, punchy tweets and thread-ready content for maximum engagement and reach.</div>
+            <div class="platform-card-tags">
+              <span>Up to 280 chars</span>
+              <span>Punchy tone</span>
+              <span>Thread-ready</span>
+            </div>
+          </div>
+          <div class="platform-card-check" *ngIf="localPlatform === 'twitter'">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+          </div>
+        </button>
+
+        <!-- Facebook — Coming Soon -->
+        <div class="platform-card platform-card-disabled">
+          <div class="platform-card-icon pci-fb">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          <div class="platform-card-body">
+            <div class="platform-card-name-wrap">
+              <div class="platform-card-name">Facebook</div>
+              <span class="coming-soon-badge">COMING SOON</span>
+            </div>
+            <div class="platform-card-desc">Engaging posts and updates tailored for Facebook audiences and page management.</div>
+            <div class="platform-card-tags">
+              <span>Long &amp; short form</span>
+              <span>Page posts</span>
+              <span>Audience targeting</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instagram — Coming Soon -->
+        <div class="platform-card platform-card-disabled">
+          <div class="platform-card-icon pci-ig">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </div>
+          <div class="platform-card-body">
+            <div class="platform-card-name-wrap">
+              <div class="platform-card-name">Instagram</div>
+              <span class="coming-soon-badge">COMING SOON</span>
+            </div>
+            <div class="platform-card-desc">Visual-first captions and story content crafted for Instagram engagement and discovery.</div>
+            <div class="platform-card-tags">
+              <span>Captions</span>
+              <span>Hashtag sets</span>
+              <span>Story copy</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="step-nav">
+        <!-- Validation error -->
+        <div class="validation-msg" *ngIf="validationErrors['platform']">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+          {{ validationErrors['platform'] }}
+        </div>
+        <span *ngIf="!validationErrors['platform']"></span>
+        <button class="btn-continue" type="button" (click)="tryNext()">
+          Continue
+          <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ───── STEP 2: CONFIGURE ───── -->
+    <div class="step-page" *ngIf="currentStep === 'configure'">
+      <div class="step-heading">
+        <h2>Configure generation</h2>
+        <p>Set how far back to scan, how many posts to create, and where to send them.</p>
+      </div>
+
+      <div class="config-section">
+
+        <!-- ── 1. Lookback window — pill buttons ── -->
+        <div class="config-card" [class.card-complete]="localLookback > 0">
+          <div class="config-card-head">
+            <div class="config-card-icon cci-amber">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-12a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l2.828 2.829a1 1 0 1 0 1.415-1.415L11 9.586V6z"/></svg>
+            </div>
+            <div>
+              <div class="config-card-title">Lookback window</div>
+              <div class="config-card-sub">How far back to scan for articles</div>
+            </div>
+            <span class="card-check" *ngIf="localLookback > 0">
+              <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
+            </span>
+          </div>
+          <div class="pill-group">
+            <button class="pill-btn" type="button"
+              *ngFor="let opt of lookbackWindow"
+              [class.pill-active]="localLookback === opt"
+              (click)="localLookback = opt">{{ opt }}h</button>
+          </div>
+        </div>
+
+        <!-- ── 2. Posts to generate — pill buttons ── -->
+        <div class="config-card" [class.card-complete]="localPosts > 0">
+          <div class="config-card-head">
+            <div class="config-card-icon cci-amber">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0 1 12 2v5h4a1 1 0 0 1 .82 1.573l-7 10A1 1 0 0 1 8 18v-5H4a1 1 0 0 1-.82-1.573l7-10a1 1 0 0 1 1.12-.38z"/></svg>
+            </div>
+            <div>
+              <div class="config-card-title">Posts to generate</div>
+              <div class="config-card-sub">Number of post drafts per run (max 5)</div>
+            </div>
+            <span class="card-check" *ngIf="localPosts > 0">
+              <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
+            </span>
+          </div>
+          <div class="pill-group">
+            <button class="pill-btn" type="button"
+              *ngFor="let n of postsWindow"
+              [class.pill-active]="localPosts === n"
+              (click)="localPosts = n">{{ n }}</button>
+          </div>
+        </div>
+
+        <!-- ── 3. Email — always open, red border if empty ── -->
+        <div class="config-card" [class.card-complete]="isValidEmailPublic(localEmail)">
+          <div class="config-card-head">
+            <div class="config-card-icon cci-amber">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0 0 16 4H4a2 2 0 0 0-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.118z"/></svg>
+            </div>
+            <div class="email-head-body">
+              <div class="config-card-title">Email recipient</div>
+              <div class="config-card-sub">Where to deliver the generated posts</div>
+            </div>
+            <span class="card-check" *ngIf="isValidEmailPublic(localEmail)">
+              <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
+            </span>
+          </div>
+
+          <!-- Input row — shown when editing or no email saved -->
+          <div class="email-edit-row" *ngIf="isEmailEditMode || !isValidEmailPublic(localEmail)">
+            <div class="email-input-wrap"
+              [class.email-input-error]="!!emailError"
+              [class.email-input-ok]="emailDraftValid && !emailError">
+              <svg class="email-input-icon" viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/></svg>
+              <input type="email" class="email-input" [(ngModel)]="emailDraft" placeholder="yourname@company.com"
+                (input)="onEmailInput()" (focus)="emailTouched = true"
+                (keydown.enter)="saveEmail()" (keydown.escape)="cancelEmail()"
+                autocomplete="email">
+              <svg class="email-valid-icon" *ngIf="emailDraftValid && !emailError" viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+            </div>
+            <button class="email-save" type="button" (click)="saveEmail()" [disabled]="!emailDraftValid">Save</button>
+            <button class="email-cancel" type="button" (click)="cancelEmail()" *ngIf="isEmailEditMode">✕</button>
+          </div>
+
+          <!-- Required message — simple text, no box -->
+          <div class="email-required-msg" *ngIf="!isValidEmailPublic(localEmail) && emailTouched && !isEmailEditMode">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+            Email is required to receive your posts
+          </div>
+
+          <!-- Inline error while typing -->
+          <div class="email-error" *ngIf="emailError && isEmailEditMode">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+            {{ emailError }}
+          </div>
+
+          <!-- Saved email display -->
+          <div class="email-display" *ngIf="!isEmailEditMode && isValidEmailPublic(localEmail)">
+            <span class="email-val">{{ localEmail }}</span>
+            <button class="edit-email-btn" type="button" (click)="enableEmailEdit()">Edit</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Premium Summary Table ── -->
+      <div class="premium-summary">
+        <div class="ps-title">Configuration Summary</div>
+        <p class="ps-subtitle">Review your settings before continuing. You can go back to edit any configuration.</p>
+        <div class="ps-table-wrap">
+          <table class="ps-table">
+            <thead>
+              <tr class="ps-thead">
+                <th class="ps-th">Setting</th>
+                <th class="ps-th">Your Selection</th>
+                <th class="ps-th">Details</th>
+                <th class="ps-th ps-th-right">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Platform -->
+              <tr class="ps-row">
+                <td class="ps-setting">
+                  <div class="ps-setting-icon ps-icon-li" *ngIf="localPlatform !== 'twitter'">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 1 1 0-3.096 1.548 1.548 0 0 1 0 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z"/></svg>
+                  </div>
+                  <div class="ps-setting-icon ps-icon-tw" *ngIf="localPlatform === 'twitter'">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M11.896 9.07 17.537 2.5h-1.331l-4.898 5.493-3.907-5.493H3L8.938 11.1 3 18h1.331l5.204-5.836 4.151 5.836H17L11.896 9.07z"/></svg>
+                  </div>
+                  <span class="ps-setting-name">Platform</span>
+                </td>
+                <td class="ps-selection">
+                  <span class="ps-badge ps-badge-amber">{{ localPlatform === 'twitter' ? 'Twitter / X' : 'LinkedIn' }}</span>
+                </td>
+                <td class="ps-details">Content will be generated for {{ localPlatform === 'twitter' ? 'Twitter / X' : 'LinkedIn' }}.</td>
+                <td class="ps-status">
+                  <div class="ps-check ps-check-done">
+                    <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                  </div>
+                </td>
+              </tr>
+              <!-- Lookback -->
+              <tr class="ps-row">
+                <td class="ps-setting">
+                  <div class="ps-setting-icon ps-icon-neutral">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-12a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l2.828 2.829a1 1 0 1 0 1.415-1.415L11 9.586V6z"/></svg>
+                  </div>
+                  <span class="ps-setting-name">Lookback Window</span>
+                </td>
+                <td class="ps-selection">
+                  <span class="ps-badge ps-badge-amber">{{ localLookback }}h</span>
+                </td>
+                <td class="ps-details">How far back to scan for articles.</td>
+                <td class="ps-status">
+                  <div class="ps-check ps-check-done">
+                    <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                  </div>
+                </td>
+              </tr>
+              <!-- Posts -->
+              <tr class="ps-row">
+                <td class="ps-setting">
+                  <div class="ps-setting-icon ps-icon-neutral">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0 1 12 2v5h4a1 1 0 0 1 .82 1.573l-7 10A1 1 0 0 1 8 18v-5H4a1 1 0 0 1-.82-1.573l7-10a1 1 0 0 1 1.12-.38z"/></svg>
+                  </div>
+                  <span class="ps-setting-name">Posts to Generate</span>
+                </td>
+                <td class="ps-selection">
+                  <span class="ps-badge ps-badge-amber">{{ postsLabel }}</span>
+                </td>
+                <td class="ps-details">Number of post drafts per run.</td>
+                <td class="ps-status">
+                  <div class="ps-check ps-check-done" *ngIf="localPosts > 0">
+                    <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                  </div>
+                </td>
+              </tr>
+              <!-- Email -->
+              <tr class="ps-row">
+                <td class="ps-setting">
+                  <div class="ps-setting-icon ps-icon-neutral">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0 0 16 4H4a2 2 0 0 0-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.118z"/></svg>
+                  </div>
+                  <span class="ps-setting-name">Email Recipient</span>
+                </td>
+                <td class="ps-selection">
+                  <span class="ps-email-val" *ngIf="isValidEmailPublic(localEmail)">{{ localEmail }}</span>
+                  <span class="ps-email-required" *ngIf="!isValidEmailPublic(localEmail)">Email required</span>
+                </td>
+                <td class="ps-details">Where to deliver the generated posts.</td>
+                <td class="ps-status">
+                  <div class="ps-check ps-check-done" *ngIf="isValidEmailPublic(localEmail)">
+                    <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>
+                  </div>
+                  <div class="ps-check ps-check-error" *ngIf="!isValidEmailPublic(localEmail)">
+                    <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/></svg>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="step-nav">
+        <button class="btn-back" type="button" (click)="back()">← Back</button>
+        <div class="step-nav-right">
+          <div class="validation-msg validation-msg-inline" *ngIf="validationErrors['email'] || validationErrors['lookback'] || validationErrors['posts']">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+            Please fill in all required fields above
+          </div>
+          <button class="btn-continue" type="button" (click)="tryNext()">
+            Continue
+            <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── STEP 3: REVIEW SOURCES ───── -->
+    <!-- Stays visible as background when run modal is active -->
+    <div class="step-page step-page-sources" *ngIf="currentStep === 'review' || (currentStep === 'run' && (isRunning || !!runResult))"
+         [style.pointer-events]="currentStep === 'run' ? 'none' : 'auto'"
+         [style.user-select]="currentStep === 'run' ? 'none' : 'auto'">
+      <div class="step-heading">
+        <h2>Review sources</h2>
+        <p>Select which sources to scan · {{ state.activeSourceCount() }} of {{ state.totalSourceCount() }} active</p>
+      </div>
+
+      <!-- ── Toolbar ── -->
+      <div class="sources-toolbar">
+        <div class="sources-search-wrap">
+          <svg class="src-search-icon" viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zm-5.44 1.156a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/></svg>
+          <input class="sources-search" type="text" [(ngModel)]="sourceSearch" placeholder="Search sources…">
+        </div>
+        <!-- ── Add Source button opens modal ── -->
+        <div class="sources-add-wrap">
+          <button class="btn-add-src" type="button" (click)="openAddSourceModal()">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+            Add source
+          </button>
+        </div>
+        <!-- ── Enable All / Disable All — show active state based on source count ── -->
+        <button class="btn-tog" type="button" (click)="state.selectAllSources()"
+          [class.btn-tog-active]="state.activeSourceCount() === state.totalSourceCount()">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
+          Enable all
+        </button>
+        <button class="btn-tog btn-tog-off" type="button" (click)="state.deselectAllSources()"
+          [class.btn-tog-active-off]="state.activeSourceCount() === 0">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/></svg>
+          Disable all
+        </button>
+        <!-- ── Create folder ── -->
+        <button class="btn-tog btn-tog-folder" type="button" (click)="openCreateFolderModal()">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/></svg>
+          New section
+        </button>
+      </div>
+
+      <!-- ── Tier filter chips ── -->
+      <div class="tier-filter-row">
+        <button class="tfp" [class.tfp-active]="!modalTierFilter" type="button" (click)="modalTierFilter = null">All tiers</button>
+        <button class="tfp" *ngFor="let t of state.tierOrder" [class.tfp-active]="modalTierFilter === t" type="button" (click)="modalTierFilter = modalTierFilter === t ? null : t">
+          {{ state.tierNames[t].split('—')[0].trim() }}
+        </button>
+        <!-- Custom folder chips -->
+        <button class="tfp tfp-folder" *ngFor="let f of customFolders" [class.tfp-active]="activeFolderFilter === f.id" type="button" (click)="toggleFolderFilter(f.id)">
+          <svg viewBox="0 0 12 12" fill="currentColor" width="9" height="9"><path d="M.405 2.903.375 2.25A1.5 1.5 0 0 1 1.875.75H4.629a1.5 1.5 0 0 1 1.06.44l.622.622A1.5 1.5 0 0 0 7.372 2.25h2.985a1.5 1.5 0 0 1 1.494 1.636l-.477 5.25A1.5 1.5 0 0 1 9.88 10.5H2.12A1.5 1.5 0 0 1 .624 9.136l-.477-5.25A1.49 1.49 0 0 1 .405 2.903z"/></svg>
+          {{ f.name }}
+          <span class="tc-count">{{ f.sources.length }}</span>
+        </button>
+      </div>
+
+      <!-- ── Sources area ── -->
+      <div class="tiers-scroll">
+
+        <!-- Custom sections (user-created) — appear first, look identical to system tiers -->
+        <div class="tier-section tier-section-custom" *ngFor="let folder of visibleFolders">
+          <div class="tier-head">
+            <span class="tier-name">{{ folder.name }}</span>
+            <span class="tier-active-badge custom-folder-badge">
+              {{ folder.sources.length }} source{{ folder.sources.length !== 1 ? 's' : '' }}
+            </span>
+            <button class="btn-add-inline" type="button" (click)="openAddSourceModalForFolder(folder.id)">
+              <svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+              Add source
+            </button>
+            <button class="toggle-tier-btn" type="button" (click)="toggleFolderAll(folder.id)" *ngIf="folder.sources.length > 0">Toggle all</button>
+            <button class="delete-folder-btn" type="button" (click)="deleteFolder(folder.id)" title="Delete section">
+              <svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/></svg>
+            </button>
+          </div>
+          <div class="sources-grid" *ngIf="folder.sources.length > 0">
+            <div class="source-chip source-chip-folder" *ngFor="let src of folder.sources"
+              [class.src-active]="folderActiveMap[folder.id]?.[src]"
+              (click)="toggleFolderSource(folder.id, src)">
+              <span class="src-check">
+                <svg *ngIf="folderActiveMap[folder.id]?.[src]" viewBox="0 0 12 12" fill="currentColor" width="9" height="9"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
+              </span>
+              <span class="src-name">{{ src }}</span>
+              <a class="src-link-btn" [href]="getSourceUrl(src)" target="_blank" rel="noopener" (click)="$event.stopPropagation()" title="Verify source">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="9" height="9"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+              </a>
+              <button class="src-del" type="button" (click)="removeFolderSource(folder.id, src); $event.stopPropagation()">✕</button>
+            </div>
+          </div>
+          <!-- Empty state with CTA -->
+          <div class="folder-empty" *ngIf="folder.sources.length === 0">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="18" height="18" style="color:var(--amber-border)"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31z"/></svg>
+            <span>This section is empty.</span>
+            <button class="btn-empty-add" type="button" (click)="openAddSourceModalForFolder(folder.id)">
+              <svg viewBox="0 0 16 16" fill="currentColor" width="10" height="10"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+              Add your first source
+            </button>
+          </div>
+        </div>
+
+        <!-- System tiers -->
+        <div class="tier-section" *ngFor="let section of filteredTiers">
+          <div class="tier-head">
+            <span class="tier-name">{{ section.name }}</span>
+            <span class="tier-active-badge">{{ section.activeCount }}/{{ section.totalCount }} active</span>
+            <button class="toggle-tier-btn" type="button" (click)="state.toggleTierAll(section.tier)">Toggle all</button>
+          </div>
+          <div class="sources-grid">
+            <div class="source-chip" *ngFor="let src of section.sources"
+              [class.src-active]="state.activeMap()[src]" (click)="state.toggleSource(src)">
+              <span class="src-check">
+                <svg *ngIf="state.activeMap()[src]" viewBox="0 0 12 12" fill="currentColor" width="9" height="9"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
+              </span>
+              <span class="src-name">{{ src }}</span>
+              <!-- Verify source link -->
+              <a class="src-link-btn" [href]="getSourceUrl(src)" target="_blank" rel="noopener" (click)="$event.stopPropagation()" title="Verify source — opens original page">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="9" height="9"><path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+              </a>
+              <button class="src-del" type="button" (click)="state.deleteSource(src, section.tier); $event.stopPropagation()">✕</button>
+            </div>
+          </div>
+        </div>
+        <div class="no-sources" *ngIf="filteredTiers.length === 0 && visibleFolders.length === 0">No sources match your search</div>
+      </div>
+
+      <div class="step-nav step-nav-sticky">
+        <button class="btn-back" type="button" (click)="back()">← Back</button>
+        <div class="step-nav-right">
+          <div class="validation-msg validation-msg-inline" *ngIf="validationErrors['sources']">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+            {{ validationErrors['sources'] }}
+          </div>
+          <button class="btn-generate-now" type="button" (click)="tryRun()"
+            [class.btn-generate-disabled]="state.activeSourceCount() === 0"
+            [attr.title]="state.activeSourceCount() === 0 ? 'Enable at least one source to generate' : null">
+            <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0 1 12 2v5h4a1 1 0 0 1 .82 1.573l-7 10A1 1 0 0 1 8 18v-5H4a1 1 0 0 1-.82-1.573l7-10a1 1 0 0 1 1.12-.38z"/></svg>
+            Generate Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ADD SOURCE MODAL ═══ -->
+    <div class="modal-backdrop" *ngIf="addSourceModalOpen" (click)="closeAddSourceModal()">
+      <div class="modal-card" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <div class="modal-title-row">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16" style="color:var(--amber)"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+            <h3>Add a source</h3>
+          </div>
+          <button class="modal-close" type="button" (click)="closeAddSourceModal()">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/></svg>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Source name input -->
+          <label class="modal-label">Source name or URL</label>
+          <div class="modal-input-row">
+            <input class="modal-input" type="text" [(ngModel)]="addModal.name"
+              [placeholder]="addModal.placeholder" [class.input-flash]="addModal.flash"
+              (ngModelChange)="onAddModalNameChange()" (keydown.enter)="submitAddSource()">
+          </div>
+          <p class="modal-hint" *ngIf="addModal.detectedCategory && !addModal.preselectedFolder">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11" style="color:#16a34a"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>
+            Auto-detected category: <strong>{{ addModal.detectedCategory }}</strong>
+          </p>
+
+          <!-- Pre-selected section context (when opened from a section's own "Add source" button) -->
+          <div class="modal-section-context" *ngIf="addModal.preselectedFolder">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31z"/></svg>
+            Adding into: <strong>{{ getFolderName(addModal.selectedFolderId) }}</strong>
+            <button class="modal-ctx-clear" type="button" (click)="addModal.preselectedFolder = false; addModal.destination = 'auto'">Change destination</button>
+          </div>
+
+          <!-- Destination choice — only shown when opened from the toolbar (not a section button) -->
+          <ng-container *ngIf="!addModal.preselectedFolder">
+            <label class="modal-label" style="margin-top:16px">Where should it go?</label>
+            <div class="modal-dest-options">
+              <label class="modal-radio-card" [class.radio-selected]="addModal.destination === 'auto'">
+                <input type="radio" name="dest" value="auto" [(ngModel)]="addModal.destination">
+                <div class="modal-radio-body">
+                  <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/></svg>
+                  <div>
+                    <div class="modal-radio-title">Auto-place in detected category</div>
+                    <div class="modal-radio-desc">System picks the right tier based on source type</div>
+                  </div>
+                </div>
+              </label>
+              <label class="modal-radio-card" [class.radio-selected]="addModal.destination === 'folder'" *ngIf="customFolders.length > 0">
+                <input type="radio" name="dest" value="folder" [(ngModel)]="addModal.destination">
+                <div class="modal-radio-body">
+                  <svg viewBox="0 0 16 16" fill="currentColor" width="14" height="14"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31z"/></svg>
+                  <div>
+                    <div class="modal-radio-title">Add to a custom section</div>
+                    <div class="modal-radio-desc">Place in one of your personal sections</div>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <!-- Section picker (shown when "folder" selected) -->
+            <div class="modal-folder-pick" *ngIf="addModal.destination === 'folder' && customFolders.length > 0">
+              <div class="folder-pick-item" *ngFor="let f of customFolders"
+                [class.folder-pick-active]="addModal.selectedFolderId === f.id"
+                (click)="addModal.selectedFolderId = f.id">
+                <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31z"/></svg>
+                {{ f.name }}
+                <span class="fp-count">{{ f.sources.length }} sources</span>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="modal-footer">
+          <button class="modal-btn-cancel" type="button" (click)="closeAddSourceModal()">Cancel</button>
+          <button class="modal-btn-add" type="button" (click)="submitAddSource()" [disabled]="!addModal.name.trim()">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2z"/></svg>
+            Add source
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ CREATE FOLDER MODAL ═══ -->
+    <div class="modal-backdrop" *ngIf="createFolderModalOpen" (click)="closeCreateFolderModal()">
+      <div class="modal-card modal-card-sm" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <div class="modal-title-row">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16" style="color:var(--amber)"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31z"/></svg>
+            <h3>Create new section</h3>
+          </div>
+          <button class="modal-close" type="button" (click)="closeCreateFolderModal()">
+            <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label class="modal-label">Folder name</label>
+          <input class="modal-input" type="text" [(ngModel)]="newFolderName"
+            placeholder="e.g. News, Startup Blogs, Crypto Sources…"
+            (keydown.enter)="submitCreateFolder()">
+          <p class="modal-hint" style="margin-top:10px">
+            An empty section will be created. You can add sources directly inside it using the <strong>Add source</strong> button on the section header.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="modal-btn-cancel" type="button" (click)="closeCreateFolderModal()">Cancel</button>
+          <button class="modal-btn-add" type="button" (click)="submitCreateFolder()" [disabled]="!newFolderName.trim()">
+            Create folder
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── STEP 4: RUN ───── -->
+    <div class="step-page step-run" *ngIf="currentStep === 'run' && !isRunning && !runResult">
+      <!-- Empty placeholder — modal handles the display -->
+    </div>
+
+  </div><!-- /step-area -->
+
+  <!-- ══ RUN MODAL OVERLAY — renders over the full shell including sources ══ -->
+  <div class="run-modal-backdrop" *ngIf="currentStep === 'run' && (isRunning || runResult)">
+    <div class="run-modal-box">
+
+      <!-- Running state -->
+      <ng-container *ngIf="isRunning">
+        <div class="run-timer-corner">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+          {{ elapsedText }}
+        </div>
+
+        <div class="run-orb-wrap">
+          <div class="run-ring rr1"></div>
+          <div class="run-ring rr2"></div>
+          <div class="run-ring rr3"></div>
+          <div class="run-orb">
+            <svg viewBox="0 0 32 32" fill="none" width="22" height="22">
+              <path d="M16 7L17.2 13.8L24 16L17.2 18.2L16 25L14.8 18.2L8 16L14.8 13.8Z" fill="white" opacity="0.95"/>
+            </svg>
+          </div>
+        </div>
+        <div class="run-title">{{ localPlatform === 'twitter' ? 'Generating Tweets' : 'Generating LinkedIn Posts' }}</div>
+        <div class="run-ai-status-wrap">
+          <p class="run-ai-status" #aiStatusEl></p>
+        </div>
+        <div class="run-progress-track"><div class="run-progress-fill"></div></div>
+        <div class="run-meta-chips">
+          <div class="rmc"><span>Sources</span><strong>{{ state.activeSourceCount() }}</strong></div>
+          <div class="rmc"><span>Posts</span><strong>{{ postsLabel }}</strong></div>
+          <div class="rmc"><span>Lookback</span><strong>{{ localLookback }}h</strong></div>
+        </div>
+        <div class="run-reconnect" *ngIf="isReconnecting">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/></svg>
+          Reconnecting to server…
+        </div>
+        <div class="run-email-row">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0 0 16 4H4a2 2 0 0 0-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.118z"/></svg>
+          Sending results to <strong>{{ localEmail }}</strong>
+        </div>
+        <button class="btn-cancel-run" type="button" (click)="cancelRun()">Cancel workflow</button>
+      </ng-container>
+
+      <!-- Result state -->
+      <ng-container *ngIf="!isRunning && runResult">
+        <div class="result-icon" [class.result-ok]="runResult === 'success'" [class.result-fail]="runResult === 'error'">
+          <svg *ngIf="runResult === 'success'" viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm4.707 7.707-6 6a1 1 0 0 1-1.414 0l-2-2a1 1 0 1 1 1.414-1.414L10 13.586l5.293-5.293a1 1 0 0 1 1.414 1.414z"/></svg>
+          <svg *ngIf="runResult === 'error'" viewBox="0 0 24 24" fill="currentColor" width="32" height="32"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm1-5a1 1 0 1 1-2 0V7a1 1 0 0 1 2 0v4z"/></svg>
+        </div>
+        <h2 class="result-title">{{ runResult === 'success' ? 'Generation complete!' : 'Something went wrong' }}</h2>
+        <p class="result-msg">{{ runResultMessage }}</p>
+        <div class="result-summary" *ngIf="runResult === 'success'">
+          <div class="rs-item"><span>Platform</span><strong>{{ localPlatform === 'twitter' ? 'Twitter / X' : 'LinkedIn' }}</strong></div>
+          <div class="rs-item"><span>Posts sent</span><strong>{{ postsLabel }}</strong></div>
+          <div class="rs-item"><span>Email</span><strong>{{ localEmail }}</strong></div>
+        </div>
+        <div class="result-actions">
+          <button class="btn-done" type="button" (click)="done()">Go to Dashboard</button>
+          <button class="btn-run-again" type="button" (click)="runAgain()">Run Again</button>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+
+</div>
