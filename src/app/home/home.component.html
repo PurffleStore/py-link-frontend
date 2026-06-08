@@ -3,8 +3,8 @@
 ═══════════════════════════════════════ -->
 <nav class="navbar" [class.scrolled]="navbarScrolled">
   <div class="nav-inner">
-    <a class="nav-brand" routerLink="/">
-      <img class="nav-logo" src="assets/images/py-logo1.png" alt="Py-Link logo" />
+    <a class="nav-brand" (click)="scrollToTop()" style="cursor:pointer">
+      <img class="nav-logo" src="assets/images/py-logo1.png" alt="app logo" />
       <span style="color: #ffffff;">Py-<span style="color: #f9b83a;">Link</span></span>
     </a>
     <ul class="nav-links">
@@ -64,13 +64,13 @@
               <line x1="12" y1="16" x2="12.01" y2="16"/>
             </svg>
           </span>
-          <span class="nav-item-text"><span class="nav-item-label">About Py-Link</span></span>
+          <span class="nav-item-text"><span class="nav-item-label">About Us</span></span>
         </a>
       </li>
     </ul>
     <div class="nav-actions">
-      <a class="nav-signin" routerLink="/login">Sign in</a>
-      <a class="nav-cta" routerLink="/app/dashboard">Get started →</a>
+      <a class="nav-cta" (click)="goToApp()">Login →</a>
+
     </div>
   </div>
 </nav>
@@ -81,14 +81,14 @@
 <section class="hero" id="hero">
   <div class="hero-photo">
     <div class="hero-photo-inner">
-      <img class="hero-bg-img" src="assets/images/hero-dashboard.png" alt="Py-Link dashboard preview" />
+      <img class="hero-bg-img" src="assets/images/hero-dashboard.png" alt="dashboard preview" />
       <div class="hero-overlay"></div>
     </div>
   </div>
   <div class="hero-content">
-    <h1 class="hero-h1">Stay updated in your field<br>without reading many websites.</h1>
-    <p class="hero-sub">Py-Link checks the websites you select and prepares a short summary based on your profession. You can use it to keep up with your field and share useful updates with your network.</p>
-    <a class="hero-btn" routerLink="/app/dashboard">Start using Py-Link →</a>
+    <h1 class="hero-h1">Stay ahead in your profession.<br>Get updates and content ready daily.</h1>
+    <p class="hero-sub">It reads the websites you choose, filters updates based on your profession and sends a short summary to your email. It also prepares social media posts, hashtags and image ideas so you can share useful things with your network without spending time writing.</p>
+    <a class="hero-btn" (click)="goToApp()">Get Started →</a>
   </div>
 </section>
 
@@ -133,38 +133,38 @@
       </div>
     </div>
     <div class="features-col">
-      <div class="feat-eyebrow">FEATURES</div>
-      <h2 class="feat-heading">What Py-Link does<br>for you</h2>
+      <div class="feat-eyebrow">WHAT IT DOES</div>
+      <h2 class="feat-heading">Stay informed in your field.<br>Share what you know. All in one place.</h2>
       <div class="feat-grid">
         <div class="feat-card">
           <div class="feat-icon"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M7 3a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2H7zM4 7a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm-2 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4z"/></svg></div>
-          <h3>Checks your selected sources</h3>
-          <p>Py-Link reads the websites and feeds you choose. It looks for new and useful updates from those sources.</p>
+          <h3>Tracks websites from your field</h3>
+          <p>You add the websites you want to follow. It checks them regularly and collects new and useful updates so you do not have to visit each website yourself.</p>
         </div>
         <div class="feat-card">
           <div class="feat-icon"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0 1 12 2v5h4a1 1 0 0 1 .82 1.573l-7 10A1 1 0 0 1 8 18v-5H4a1 1 0 0 1-.82-1.573l7-10a1 1 0 0 1 1.12-.38z"/></svg></div>
-          <h3>Prepares content for you</h3>
-          <p>After checking your sources, Py-Link writes a short post based on what it found. You do not have to write anything from scratch.</p>
+          <h3>Gives you knowledge for your role</h3>
+          <p>You set your profession and interests. It reads the same websites but picks only what is useful for your role. A person in a different field will get different results from the same websites. This way you gain knowledge that is actually relevant to you.</p>
         </div>
         <div class="feat-card">
           <div class="feat-icon"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0 0 16 4H4a2 2 0 0 0-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.118z"/></svg></div>
-          <h3>Sends results to your inbox</h3>
-          <p>Your summary and post drafts are sent to your email. You can read them, make changes if needed, and then post.</p>
+          <h3>Sends a short summary to your inbox</h3>
+          <p>For each useful update it finds, it prepares a short summary explaining what happened, why it matters and how it is useful for you. You get this in your email every day. No need to log in or open any website.</p>
         </div>
         <div class="feat-card">
           <div class="feat-icon"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M13 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM18 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 15a4 4 0 0 0-8 0v3h8v-3zM6 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM16 18v-3a5.972 5.972 0 0 0-.75-2.906A3.005 3.005 0 0 1 19 15v3h-3zM4.75 12.094A5.973 5.973 0 0 0 4 15v3H1v-3a3 3 0 0 1 3.75-2.906z"/></svg></div>
-          <h3>Matches your style</h3>
-          <p>You can set how you want the posts to sound. Py-Link will follow that style each time it prepares content for you.</p>
+          <h3>Prepares social media posts for you</h3>
+          <p>Along with the knowledge summary, it also prepares post drafts for LinkedIn, Facebook and Twitter. You can choose how you want the posts to sound and it will follow that style every time.</p>
         </div>
         <div class="feat-card">
           <div class="feat-icon"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-12a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l2.828 2.829a1 1 0 1 0 1.415-1.415L11 9.586V6z"/></svg></div>
-          <h3>Choose your time range</h3>
-          <p>You can set how far back Py-Link should look. Choose 24 hours for recent news or a full week for a wider view.</p>
+          <h3>Hashtags included with every post</h3>
+          <p>For every post draft it prepares, it also gives you ready hashtags that match the topic. You do not have to think about which hashtags to use. Just copy and add them when you post.</p>
         </div>
         <div class="feat-card">
           <div class="feat-icon"><svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M5 4a1 1 0 0 0-2 0v7.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0v-1.268a2 2 0 0 0 0-3.464V4zM11 4a1 1 0 1 0-2 0v1.268a2 2 0 0 0 0 3.464V16a1 1 0 1 1 2 0V8.732a2 2 0 0 0 0-3.464V4zM16 3a1 1 0 0 1 1 1v7.268a2 2 0 0 1 0 3.464V16a1 1 0 1 1-2 0v-1.268a2 2 0 0 1 0-3.464V4a1 1 0 0 1 1-1z"/></svg></div>
-          <h3>Full source control</h3>
-          <p>Enable or disable any source. Add your own feeds. Organise by tier, official labs, research outlets, tech media or custom.</p>
+          <h3>Suggests an image idea for each post</h3>
+          <p>Along with the post, it gives a short description of what kind of image will go well with it. You can use that with any image creation tool. It does not create the image but gives you a clear idea of what to make.</p>
         </div>
       </div>
     </div>
@@ -181,111 +181,112 @@
     <div class="hiw-steps">
       <div class="hiw-step">
         <div class="hiw-num">1</div>
-        <h3>Pick your sources</h3>
-        <p>Select the websites and feeds you want to follow. Set how far back you want Py-Link to look. This takes about two minutes.</p>
+        <h3>Set up once</h3>
+        <p>Create your profile. Add your profession, role and interests. This is your persona. It uses this to understand what kind of updates are useful for you. Then add the websites you want to follow and set how often you want updates.</p>
       </div>
       <div class="hiw-dash"></div>
       <div class="hiw-step">
         <div class="hiw-num">2</div>
-        <h3>Run Py-Link</h3>
-        <p>Click Generate. Py-Link checks your selected sources, picks the useful stories and prepares a short summary and post drafts for you.</p>
+        <h3>It does the work</h3>
+        <p>It reads all your selected websites and filters the content based on your persona and role. It picks only what is useful for your profession, prepares a short summary, post drafts, hashtags and image ideas and sends everything to your email.</p>
       </div>
       <div class="hiw-dash"></div>
       <div class="hiw-step">
         <div class="hiw-num">3</div>
-        <h3>Read and share</h3>
-        <p>You get the summary and drafts by email. Read them, make any changes you want and post when you are ready.</p>
+        <h3>You just post</h3>
+        <p>Open your email. Read your updates. Pick the posts you like, edit if needed and share on LinkedIn, Facebook or Twitter when you are ready.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     USE CASES
+     WHO IS IT FOR
 ═══════════════════════════════════════ -->
 <section class="usecases" id="use-cases">
   <div class="usecases-inner">
-    <div class="usecases-eyebrow">WHO USES PY-LINK</div>
-    <h2 class="usecases-heading">Useful for many types of professionals.</h2>
-    <p class="usecases-sub">Py-Link is useful for anyone who wants to stay informed and share useful updates with their professional network.</p>
+    <div class="usecases-eyebrow">WHO IS IT FOR</div>
+    <h2 class="usecases-heading">Built for professionals.</h2>
+    <p class="usecases-sub">It does not matter what profession you are in. If your field publishes new updates, research, tools or policies regularly, this is useful for you.</p>
 
     <div class="usecases-grid">
 
-      <!-- Founders -->
+      <!-- Card 1: business/leadership focus -->
       <div class="uc-card">
         <div class="uc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
             <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
           </svg>
         </div>
-        <div class="uc-tag">Founders</div>
-        <h3 class="uc-title">Stay active on LinkedIn while you focus on your work</h3>
-        <p class="uc-desc">When you are busy building your business, it is hard to find time to post. Py-Link helps you stay present online without spending hours on content each week.</p>
+        <div class="uc-label">For people who need to stay updated</div>
+        <h3 class="uc-title">Your field is moving fast. Keep up without reading everything.</h3>
+        <p class="uc-desc">Things move fast in business. New tools, market shifts, competitor moves. You cannot read everything. It watches the sources you choose and tells you what matters, filtered for your role.</p>
         <ul class="uc-bullets">
           <li>
             <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
-            Post consistently without daily effort
+            Works for any profession or industry
           </li>
           <li>
             <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
-            Comment on tech news in your space
+            Filters updates based on your role
           </li>
           <li>
             <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
-            Build authority with investors &amp; partners
+            No need to visit many websites every day
           </li>
         </ul>
       </div>
 
-      <!-- Professionals & Consultants -->
+      <!-- Card 2: knowledge/specialist focus -->
       <div class="uc-card uc-card-highlight">
         <div class="uc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
           </svg>
         </div>
-        <div class="uc-tag uc-tag-highlight">Professionals &amp; Consultants</div>
-        <h3 class="uc-title">Keep your network informed about your field</h3>
-        <p class="uc-desc">Whether you are a doctor, engineer, lawyer, or consultant, Py-Link helps you share useful updates with your network based on what matters in your field.</p>
+        <div class="uc-label">For people who want to share their knowledge</div>
+        <h3 class="uc-title">You know useful things. Sharing them should not take hours.</h3>
+        <p class="uc-desc">Once you read the updates, sharing them with your network on LinkedIn, Facebook, Twitter or any other platform takes more time. It prepares the post drafts, hashtags and image ideas so you can post quickly without writing from scratch.</p>
         <ul class="uc-bullets">
           <li>
             <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
-            Produce more content in less time
+            Post drafts ready for all major platforms
           </li>
           <li>
             <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
-            Manage multiple brand voices
+            Hashtags and image ideas included
           </li>
           <li>
             <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
-            Share expertise without writing from scratch
+            You review, edit and post when ready
           </li>
         </ul>
       </div>
 
-      <!-- Business Owners -->
+      <!-- Card 3: advisory/client-facing focus -->
       <div class="uc-card">
         <div class="uc-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
             <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
         </div>
-        <div class="uc-tag">Business Owners</div>
-        <h3 class="uc-title">Stay informed and share what is useful</h3>
-        <p class="uc-desc">As a business owner, knowing what is happening in your industry is important. Py-Link helps you stay aware and share practical updates with your audience.</p>
+        <div class="uc-label">For people who are always busy</div>
+        <h3 class="uc-title">Stay informed and active online without spending extra time.</h3>
+        <p class="uc-desc">Most professionals want to stay updated and keep their network informed but do not have time for both. This handles the reading and the content preparation so you just spend a few minutes reviewing and posting.</p>
         <ul class="uc-bullets">
           <li>
             <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
-            Never run out of post ideas
+            Daily updates straight to your inbox
           </li>
           <li>
             <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
-            Grow engagement with timely content
+            Content ready when you need it
           </li>
           <li>
             <svg viewBox="0 0 12 12" fill="currentColor" width="10" height="10"><path d="M10.28 1.28L3.989 7.575 1.695 5.28A1 1 0 0 0 .28 6.695l3 3a1 1 0 0 0 1.414 0l7-7A1 1 0 0 0 10.28 1.28z"/></svg>
-            Stay ahead of trends in your niche
+            You stay in control of what goes out
           </li>
         </ul>
       </div>
@@ -304,101 +305,136 @@
     <p class="faq-sub">Here are some answers that may help you before you start.</p>
     <div class="faq-list">
 
+
       <div class="faq-item" [class.faq-open]="openFaq === 0" (click)="toggleFaq(0)">
         <div class="faq-question">
-          <span>How does Py-Link help me save time?</span>
+          <span>Does it only help with posts or does it also help me learn?</span>
           <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
           </span>
         </div>
         <div class="faq-answer">
-          <p>Normally you would need to visit many websites, read articles, decide what is worth sharing and then write a post. Py-Link does this for you. It checks your sources, picks useful stories and prepares a short post. You just review and post. Most people save a few hours each week by using it.</p>
+          <p>It does both. For every useful update it finds, it prepares a short summary that explains what happened, why it matters and how it is relevant to your profession. You can read this to stay informed about your field even if you do not want to post anything. The posts are optional. The knowledge update comes first.</p>
         </div>
       </div>
 
       <div class="faq-item" [class.faq-open]="openFaq === 1" (click)="toggleFaq(1)">
         <div class="faq-question">
-          <span>Do I need to know anything technical to use Py-Link?</span>
+          <span>How does it help me stay updated in my field?</span>
           <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
           </span>
         </div>
         <div class="faq-answer">
-          <p>No. Py-Link is designed to be easy to use. You just pick your sources, set a time range, enter your email and run it. The whole setup takes about two minutes. You do not need any technical background.</p>
+          <p>It reads all the websites you have selected and picks only the updates that are relevant to your profession and interests. Every result comes with a short summary so you can quickly understand what is new without reading the full article. Over time this helps you stay informed about what is happening in your field without spending hours every day.</p>
         </div>
       </div>
 
       <div class="faq-item" [class.faq-open]="openFaq === 2" (click)="toggleFaq(2)">
         <div class="faq-question">
-          <span>Can I change how the posts sound?</span>
+          <span>How does it know what is useful for me?</span>
           <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
           </span>
         </div>
         <div class="faq-answer">
-          <p>Yes. You can choose the style you prefer such as professional, conversational or analytical. Py-Link will use that style each time it prepares content for you. You can always edit the drafts before posting.</p>
+          <p>When you set up your profile, you choose your professional role and the topics you follow. It uses this to filter what it finds. Two people can track the same websites but get different results because their roles and interests are different. It shows each person only what is relevant to them.</p>
         </div>
       </div>
 
       <div class="faq-item" [class.faq-open]="openFaq === 3" (click)="toggleFaq(3)">
         <div class="faq-question">
-          <span>Where do I receive my results?</span>
+          <span>Do I need any technical knowledge to use this?</span>
           <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
           </span>
         </div>
         <div class="faq-answer">
-          <p>Py-Link sends the results to your email. You will get a short summary and ready-to-use post drafts. Each draft includes the original article link so you can check the source before posting. You do not need to log in to see the results.</p>
+          <p>No. It is very simple to use. You pick your sources, set a time range, enter your email and run it. The whole setup takes about two minutes. You do not need any technical background.</p>
         </div>
       </div>
 
       <div class="faq-item" [class.faq-open]="openFaq === 4" (click)="toggleFaq(4)">
         <div class="faq-question">
-          <span>Which sources can Py-Link check?</span>
+          <span>Which sources can it check?</span>
           <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
           </span>
         </div>
         <div class="faq-answer">
-          <p>Py-Link comes with a set of ready-to-use feeds. You can also add your own sources using any RSS feed or website URL. You can turn sources on or off anytime depending on what is useful to you.</p>
+          <p>You add the website URLs you want to track. It can be company blogs, industry news sites, research portals, product update pages or any public website. You can add as many sources as you need and turn them on or off anytime.</p>
         </div>
       </div>
 
       <div class="faq-item" [class.faq-open]="openFaq === 5" (click)="toggleFaq(5)">
         <div class="faq-question">
-          <span>Which platforms does Py-Link support?</span>
+          <span>Where do I receive my results?</span>
           <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
           </span>
         </div>
         <div class="faq-answer">
-          <p>Py-Link currently supports LinkedIn and Twitter/X. It prepares each post to match the format of that platform. More platforms are being added. You can choose which platform to use before each run.</p>
+          <p>The results are sent to your email. You will get a short summary and ready-to-use post drafts. Each draft includes the original article link so you can check the source before posting. You do not need to log in to read the results.</p>
         </div>
       </div>
 
       <div class="faq-item" [class.faq-open]="openFaq === 6" (click)="toggleFaq(6)">
         <div class="faq-question">
-          <span>What if I am not happy with a draft?</span>
+          <span>Can I choose how often it runs?</span>
           <span class="faq-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
           </span>
         </div>
         <div class="faq-answer">
-          <p>You are always in control. You can edit any draft, rewrite it or ignore it. Nothing is posted without your action. If you want better results, you can change your sources or tone settings and run Py-Link again.</p>
+          <p>Yes. You can set it to run daily, weekly or at a time that suits you. You can also run it manually whenever you want. You can also choose how far back it should look, such as the last 24 hours, 48 hours or 72 hours.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" [class.faq-open]="openFaq === 7" (click)="toggleFaq(7)">
+        <div class="faq-question">
+          <span>Can I change how the posts sound?</span>
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes. You can choose the style you prefer such as professional, conversational or analytical. It will use that style each time it prepares content for you. You can always edit the drafts before posting.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" [class.faq-open]="openFaq === 8" (click)="toggleFaq(8)">
+        <div class="faq-question">
+          <span>Which platforms does it support?</span>
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </div>
+        <div class="faq-answer">
+          <p>It supports LinkedIn, Facebook and Twitter/X. For each platform the post is prepared in a different way. LinkedIn posts are more professional. Facebook posts are more general. Twitter/X posts are short and to the point. You can choose which platform you want before each run.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" [class.faq-open]="openFaq === 9" (click)="toggleFaq(9)">
+        <div class="faq-question">
+          <span>What is the image idea it gives for each post?</span>
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </div>
+        <div class="faq-answer">
+          <p>For each post it prepares, it also writes a short description of what kind of image would work well with that post. You can copy this description and use any image creation tool to make a suitable image. It does not create the image itself, but gives you a clear idea of what to create.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" [class.faq-open]="openFaq === 10" (click)="toggleFaq(10)">
+        <div class="faq-question">
+          <span>What if I am not happy with a draft?</span>
+          <span class="faq-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </div>
+        <div class="faq-answer">
+          <p>You are always in control. You can edit any draft, rewrite it or ignore it. Nothing is posted without your action. If you want better results, you can change your sources or tone settings and run it again.</p>
         </div>
       </div>
 
@@ -414,12 +450,12 @@
     <div class="footer-top">
       <div class="footer-brand-col">
         <div class="footer-brand">
-          <img class="footer-logo" src="assets/images/py-logo1.png" alt="Py-Link logo" />
+          <img class="footer-logo" src="assets/images/py-logo1.png" alt="app logo" />
           <span><span style="color:#fff;">Py-</span><span style="color:#f9b83a;">Link</span></span>
         </div>
         <p class="footer-pykara">A <a href="https://pykara.ai/" target="_blank" rel="noopener" class="footer-pykara-name">Pykara Technologies</a> product</p>
-        <p class="footer-tagline">Stay informed in your field. Prepare content without spending hours on it.</p>
-        <a class="footer-cta" routerLink="/app/dashboard">Start using Py-Link →</a>
+        <p class="footer-tagline">Read less. Know more. Share useful things with your professional network every day.</p>
+        <a class="footer-cta" (click)="goToApp()">Get Started →</a>
       </div>
       <div class="footer-links-col">
         <div class="footer-link-group">
@@ -431,14 +467,14 @@
         </div>
         <div class="footer-link-group">
           <div class="footer-link-heading">Account</div>
-          <a routerLink="/login">Sign in</a>
-          <a routerLink="/app/dashboard">Get started</a>
+          <a (click)="goToApp()">Login</a>
+
         </div>
         <div class="footer-link-group">
           <div class="footer-link-heading">Legal</div>
           <a routerLink="/privacy-policy">Privacy policy</a>
           <a routerLink="/terms">Terms of service</a>
-          <a routerLink="/about">About Pykara</a>
+          <a href="https://pykara.ai/" target="_blank" rel="noopener">About Pykara</a>
         </div>
         <div class="footer-link-group">
           <div class="footer-link-heading">Get in touch</div>
@@ -474,25 +510,11 @@
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">© 2026 Pykara Technologies. All rights reserved.</span>
-      <div class="footer-trust">
-        <span class="footer-trust-badge">
-          <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0 0 10 1.944 11.954 11.954 0 0 0 17.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 0 0-1.414-1.414L9 10.586 7.707 9.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4z"/></svg>
-          Secure
-        </span>
-        <span class="footer-trust-badge">
-          <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0 1 12 2v5h4a1 1 0 0 1 .82 1.573l-7 10A1 1 0 0 1 8 18v-5H4a1 1 0 0 1-.82-1.573l7-10a1 1 0 0 1 1.12-.38z"/></svg>
-          Fast
-        </span>
-        <span class="footer-trust-badge">
-          <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12"><path d="M13 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM18 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 15a4 4 0 0 0-8 0v3h8v-3z"/></svg>
-          Trusted
-        </span>
-      </div>
       <div class="footer-socials">
         <a href="https://www.youtube.com/@PykaraTechnologies" target="_blank" rel="noopener" aria-label="YouTube">
           <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
         </a>
-        <a href="https://www.linkedin.com/company/pykara-technologies" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/company/pykaratechnologies/" target="_blank" rel="noopener" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
         <a href="https://www.instagram.com/pykaratech/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -511,3 +533,15 @@
     </div>
   </div>
 </footer>
+
+<!-- ═══════════════════════════════════════
+     LOGIN TOAST POPUP
+═══════════════════════════════════════ -->
+@if (showLoginToast) {
+  <div class="login-toast">
+    <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+      <path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2zm-.75 4.5h1.5v4.5h-1.5V6.5zm0 6h1.5v1.5h-1.5V12.5z"/>
+    </svg>
+    Please login to access the app
+  </div>
+}

@@ -1349,37 +1349,42 @@ export class HistoryComponent implements OnInit, OnDestroy {
     this.linkedinPostingKey = key;
     this.liPostError = null;
 
-    const text = this.liConfirmPreview;
-
     try {
-      const controller = new AbortController();
-      const timeoutId  = setTimeout(() => controller.abort(), 15000); // 15 s hard timeout
+      // ── Attempt 1: try to post directly ──────────────────────────────
+      const res = await this.callLinkedInPost(post);
 
-      let res: Response;
-      try {
-        res = await fetch('/api/linkedin/post', {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify({ text, title: post.title }),
-          signal:  controller.signal,
-        });
-      } finally {
-        clearTimeout(timeoutId);
+      if (res.status === 401) {
+        // ── Not authenticated: open OAuth popup and wait for it ─────────
+        const data = await res.json().catch(() => ({}));
+        if (!data.requiresAuth) {
+          throw new Error(data.error || `Server error (${res.status})`);
+        }
+
+        this.liPostError = null; // clear any previous error while waiting
+
+        const authOk = await this.openLinkedInOAuthPopup();
+        if (!authOk) {
+          throw new Error('LinkedIn sign-in was cancelled or failed. Please try again.');
+        }
+
+        // ── Attempt 2: retry now that we have a token ─────────────────
+        const retryRes = await this.callLinkedInPost(post);
+        if (!retryRes.ok) {
+          const d = await retryRes.json().catch(() => ({}));
+          throw new Error(d.error || `Server error (${retryRes.status})`);
+        }
+      } else if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        throw new Error(d.error || `Server error (${res.status})`);
       }
 
-      if (!res!.ok) {
-        let msg = `Server error (${res!.status})`;
-        try { const d = await res!.json(); msg = d.error || d.message || msg; } catch {}
-        throw new Error(msg);
-      }
-
+      // ── Success ───────────────────────────────────────────────────────
       this.linkedinPostingKey = null;
       this.linkedinPostedKey  = key;
       document.body.style.overflow = '';
       this.liConfirmPost = null;
       this.liConfirmKey  = null;
 
-      // Reset the "Posted!" badge after 5 s
       setTimeout(() => {
         if (this.linkedinPostedKey === key) this.linkedinPostedKey = null;
       }, 5000);
@@ -1387,13 +1392,111 @@ export class HistoryComponent implements OnInit, OnDestroy {
     } catch (err: any) {
       this.linkedinPostingKey = null;
       if (err?.name === 'AbortError') {
-        this.liPostError = 'Request timed out. Check that the /api/linkedin/post endpoint is set up on your backend.';
+        this.liPostError = 'Request timed out. Please try again.';
       } else if (err?.message?.includes('Failed to fetch') || err?.message?.includes('NetworkError')) {
-        this.liPostError = 'Could not reach /api/linkedin/post. Make sure the backend endpoint exists.';
+        this.liPostError = 'Could not reach the server. Make sure the backend is running.';
       } else {
         this.liPostError = err?.message || 'Could not post to LinkedIn. Please try again.';
       }
     }
+  }
+
+  /** Fire a single POST /api/linkedin/post and return the raw Response. */
+  private callLinkedInPost(post: GeneratedPost): Promise<Response> {
+    const text = this.liConfirmPreview;
+    const controller = new AbortController();
+    const timeoutId  = setTimeout(() => controller.abort(), 20_000);
+    return fetch('/api/linkedin/post', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ text, title: post.title }),
+      signal:  controller.signal,
+    }).finally(() => clearTimeout(timeoutId));
+  }
+
+  private openLinkedInOAuthPopup(): Promise<boolean> {
+    return new Promise((resolve) => {
+      const width  = 600;
+      const height = 700;
+      const left   = Math.round(window.screenX + (window.outerWidth  - width)  / 2);
+      const top    = Math.round(window.screenY + (window.outerHeight - height) / 2);
+
+      // ── Absolute backend URL ───────────────────────────────────────────────
+      // window.open() is a full browser navigation, NOT an XHR/fetch call.
+      // Angular's dev proxy does NOT intercept browser navigations, so a
+      // relative URL like '/api/linkedin/auth' always resolves to Angular's
+      // port (4200). Angular has no /api route, the ** wildcard fires, and the
+      // popup loads /app/dashboard. Fix: always use the absolute backend URL.
+      const backendOrigin: string = (() => {
+        // 1. Explicit global — set this in index.html or environment.ts if needed
+        if (typeof (window as any).BACKEND_ORIGIN === 'string' &&
+            (window as any).BACKEND_ORIGIN) {
+          return (window as any).BACKEND_ORIGIN;
+        }
+        // 2. Dev heuristic: Angular default port is 4200, Express is on 3000
+        if (window.location.port === '4200') {
+          return 'http://localhost:3000';
+        }
+        // 3. Production: same origin
+        return window.location.origin;
+      })();
+
+      const authUrl   = `${backendOrigin}/api/linkedin/auth`;
+      const statusUrl = `${backendOrigin}/api/linkedin/status`;
+
+      const popup = window.open(
+        authUrl,
+        'linkedin_oauth',
+        `width=${width},height=${height},left=${left},top=${top},` +
+        'toolbar=no,menubar=no,scrollbars=yes,resizable=yes'
+      );
+
+      if (!popup) {
+        this.liPostError =
+          'Popup was blocked by your browser. ' +
+          'Please allow popups for this site and try again.';
+        resolve(false);
+        return;
+      }
+
+      let resolved = false;
+
+      const onMessage = (event: MessageEvent) => {
+        if (event.source !== popup) return;
+        if (event.data?.type === 'LINKEDIN_AUTH_SUCCESS') {
+          resolved = true; cleanup(); resolve(true);
+        } else if (event.data?.type === 'LINKEDIN_AUTH_ERROR') {
+          resolved = true; cleanup(); resolve(false);
+        }
+      };
+
+      const pollTimer = setInterval(() => {
+        if (!popup.closed) return;
+        if (!resolved) {
+          resolved = true; cleanup();
+          fetch(statusUrl)
+            .then(r => r.json())
+            .then(d => resolve(!!d.connected))
+            .catch(() => resolve(false));
+        }
+      }, 500);
+
+      const hardTimeout = setTimeout(() => {
+        if (!resolved) {
+          resolved = true; cleanup();
+          if (!popup.closed) popup.close();
+          resolve(false);
+        }
+      }, 5 * 60 * 1000);
+
+      const cleanup = () => {
+        clearInterval(pollTimer);
+        clearTimeout(hardTimeout);
+        window.removeEventListener('message', onMessage);
+      };
+
+      window.addEventListener('message', onMessage);
+    });
   }
 
   openModal(post: GeneratedPost, run: RichEntry): void {

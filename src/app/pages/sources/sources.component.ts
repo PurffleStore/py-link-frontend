@@ -77,11 +77,18 @@ function getSourceUrl(name: string): string {
     </div>
     <!-- Read-only notice badge -->
     <div class="readonly-badge">
-      <svg viewBox="0 0 16 16" fill="currentColor" width="12" height="12">
-        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-      </svg>
-      View only — manage sources in the
-      <a class="readonly-link" routerLink="/generate">Generate flow</a>
+      <div class="readonly-badge-top">
+        <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13" style="flex-shrink:0">
+          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+        </svg>
+        <span>This page is view only. To add, remove, or toggle sources, use the Generate flow.</span>
+      </div>
+      <a class="readonly-btn" routerLink="/app/generate">
+        Go to Generate flow
+        <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11">
+          <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        </svg>
+      </a>
     </div>
   </div>
 
@@ -122,12 +129,16 @@ function getSourceUrl(name: string): string {
   <div class="tiers-wrap">
     <div class="tier-panel" *ngFor="let section of filteredTiers">
 
-      <div class="tier-panel-head">
+      <div class="tier-panel-head" (click)="toggleTier(section.tier)" role="button" [attr.aria-expanded]="!collapsedTiers.has(section.tier)">
         <span class="tp-name">{{ section.name }}</span>
         <span class="tp-badge">{{ section.activeCount }}/{{ section.totalCount }} active</span>
+        <svg class="tp-chevron" [class.tp-chevron-collapsed]="collapsedTiers.has(section.tier)"
+          viewBox="0 0 16 16" fill="currentColor" width="13" height="13">
+          <path d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+        </svg>
       </div>
 
-      <div class="sources-grid">
+      <div class="sources-grid" *ngIf="!collapsedTiers.has(section.tier)">
         <a class="src-card"
           *ngFor="let src of section.sources"
           [href]="getUrl(src)"
@@ -152,7 +163,7 @@ function getSourceUrl(name: string): string {
         </a>
       </div>
 
-      <div class="no-src" *ngIf="section.sources.length === 0">No sources match</div>
+      <div class="no-src" *ngIf="!collapsedTiers.has(section.tier) && section.sources.length === 0">No sources match</div>
     </div>
     <div class="no-tiers" *ngIf="filteredTiers.length === 0">
       No sources found for "{{ searchQ }}"
@@ -217,29 +228,48 @@ function getSourceUrl(name: string): string {
     /* Read-only notice badge */
     .readonly-badge {
       display: flex;
-      align-items: center;
-      gap: 7px;
+      flex-direction: column;
+      gap: 10px;
       background: #fffbeb;
       border: 1.5px solid #fde68a;
-      border-radius: 10px;
-      padding: 9px 16px;
-      font-size: 0.78rem;
+      border-radius: 12px;
+      padding: 13px 18px;
+      flex-shrink: 0;
+      max-width: 380px;
+    }
+
+    .readonly-badge-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 0.80rem;
       font-weight: 500;
       color: #92400e;
-      white-space: nowrap;
-      flex-shrink: 0;
+      line-height: 1.5;
     }
 
-    .readonly-badge svg { color: #d97706; flex-shrink: 0; }
+    .readonly-badge-top svg { color: #d97706; margin-top: 2px; }
 
-    .readonly-link {
-      color: var(--amber-dark);
+    .readonly-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      align-self: flex-start;
+      background: var(--amber);
+      color: #1c160a;
+      font-size: 0.76rem;
       font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 2px;
+      font-family: 'Outfit', sans-serif;
+      padding: 7px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.12s;
     }
 
-    .readonly-link:hover { color: var(--amber); }
+    .readonly-btn:hover {
+      background: var(--amber-hover);
+      transform: translateY(-1px);
+    }
 
     /* ── Toolbar ── */
     .toolbar {
@@ -363,6 +393,21 @@ function getSourceUrl(name: string): string {
       padding: 14px 20px;
       background: #faf8f4;
       border-bottom: 1.5px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.13s;
+    }
+
+    .tier-panel-head:hover { background: #f5f0e8; }
+
+    .tp-chevron {
+      color: var(--text-tertiary);
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .tp-chevron-collapsed {
+      transform: rotate(180deg);
     }
 
     .tp-name {
@@ -412,7 +457,10 @@ function getSourceUrl(name: string): string {
       box-shadow: 0 3px 10px rgba(245,166,35,0.14);
     }
 
-    .src-card:hover .src-link-icon { opacity: 1; color: var(--amber-dark); }
+    .src-card:hover .src-link-icon {
+      opacity: 1;
+      color: var(--amber-dark);
+    }
 
     /* Active sources — amber tinted */
     .src-on {
@@ -448,10 +496,10 @@ function getSourceUrl(name: string): string {
       font-weight: 600;
     }
 
-    /* External link icon — subtle until hover */
+    /* External link icon — always visible, amber tint signals clickability */
     .src-link-icon {
-      color: var(--text-tertiary);
-      opacity: 0.45;
+      color: var(--amber-dark);
+      opacity: 0.70;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -470,10 +518,19 @@ function getSourceUrl(name: string): string {
 export class SourcesComponent {
   searchQ = '';
   tierFilter: TierKey | null = null;
+  collapsedTiers = new Set<TierKey>();
 
   constructor(public state: AppStateService) {}
 
   getUrl(name: string): string { return getSourceUrl(name); }
+
+  toggleTier(tier: TierKey): void {
+    if (this.collapsedTiers.has(tier)) {
+      this.collapsedTiers.delete(tier);
+    } else {
+      this.collapsedTiers.add(tier);
+    }
+  }
 
   get filteredTiers() {
     const q = this.searchQ.trim().toLowerCase();

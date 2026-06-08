@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { AppStateService } from '../services/app-state.service';
+import { AuthService } from '../login/auth.service';
 import { filter } from 'rxjs/operators';
 
 type GenStep = 'platform' | 'configure' | 'review' | 'run';
@@ -14,25 +15,20 @@ type GenStep = 'platform' | 'configure' | 'review' | 'run';
   styleUrl: './shell.component.scss'
 })
 export class ShellComponent {
-  sidebarCollapsed = false;
   currentUrl = '';
   readonly stepOrder: GenStep[] = ['platform', 'configure', 'review', 'run'];
 
-  constructor(public state: AppStateService, private router: Router) {
+  constructor(public state: AppStateService, public auth: AuthService, private router: Router) {
     this.currentUrl = this.router.url;
     this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe((e: any) => {
         this.currentUrl = e.urlAfterRedirects || e.url;
-        window.scrollTo(0, 0); // ← added
+        window.scrollTo(0, 0);
         if (!this.currentUrl.includes('/generate')) {
           this.state.generateStep.set('platform');
         }
       });
-  }
-
-  toggleSidebar(): void {
-    this.sidebarCollapsed = !this.sidebarCollapsed;
   }
 
   isGeneratePage(): boolean {
@@ -42,5 +38,9 @@ export class ShellComponent {
   isStepDone(step: GenStep): boolean {
     const currentIdx = this.stepOrder.indexOf(this.state.generateStep() as GenStep);
     return this.stepOrder.indexOf(step) < currentIdx;
+  }
+
+  logout(): void {
+    this.auth.logout();
   }
 }

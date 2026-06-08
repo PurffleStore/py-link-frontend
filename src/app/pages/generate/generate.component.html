@@ -9,7 +9,7 @@
     <div class="step-page" *ngIf="currentStep === 'platform'">
       <div class="step-heading">
         <h2>Choose your platform</h2>
-        <p>Select where your AI-generated content will be published</p>
+        <p>Select where your content will be published</p>
       </div>
 
       <div class="platform-cards">
@@ -170,7 +170,9 @@
         </div>
 
         <!-- ── 3. Email — always open, red border if empty ── -->
-        <div class="config-card" [class.card-complete]="isValidEmailPublic(localEmail)">
+        <div class="config-card"
+          [class.card-complete]="isValidEmailPublic(localEmail)"
+          [class.card-email-required]="emailTouched && !isValidEmailPublic(localEmail)">
           <div class="config-card-head">
             <div class="config-card-icon cci-amber">
               <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0 0 16 4H4a2 2 0 0 0-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.118z"/></svg>
@@ -200,8 +202,9 @@
             <button class="email-cancel" type="button" (click)="cancelEmail()" *ngIf="isEmailEditMode">✕</button>
           </div>
 
-          <!-- Required message — simple text, no box -->
-          <div class="email-required-msg" *ngIf="!isValidEmailPublic(localEmail) && emailTouched && !isEmailEditMode">
+          <!-- Required message — only shown when no valid email has been typed or saved -->
+          <div class="email-required-msg"
+            *ngIf="emailTouched && !isEmailEditMode && !isValidEmailPublic(localEmail) && !isValidEmailPublic(emailDraft)">
             <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
             Email is required to receive your posts
           </div>
@@ -320,14 +323,16 @@
         </div>
       </div>
 
-      <div class="step-nav">
+      <div class="step-nav step-nav-sticky">
         <button class="btn-back" type="button" (click)="back()">← Back</button>
         <div class="step-nav-right">
           <div class="validation-msg validation-msg-inline" *ngIf="validationErrors['email'] || validationErrors['lookback'] || validationErrors['posts']">
             <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
             Please fill in all required fields above
           </div>
-          <button class="btn-continue" type="button" (click)="tryNext()">
+          <button class="btn-continue" type="button" (click)="tryNext()"
+            [disabled]="!canAdvance()"
+            [title]="!isValidEmailPublic(localEmail) ? 'Enter a valid email to continue' : ''">
             Continue
             <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
           </button>
@@ -372,7 +377,7 @@
         <!-- ── Create folder ── -->
         <button class="btn-tog btn-tog-folder" type="button" (click)="openCreateFolderModal()">
           <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/></svg>
-          New section
+          New tier
         </button>
       </div>
 
@@ -602,7 +607,7 @@
       <ng-container *ngIf="isRunning">
         <div class="run-timer-corner">
           <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
-          {{ elapsedText }}
+          {{ elapsedText }} elapsed
         </div>
 
         <div class="run-orb-wrap">

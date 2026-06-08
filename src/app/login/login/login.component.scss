@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+
+/* ════════ LEFT — Black ════════ */
+.login-left {
+  background: #080604;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 48px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.login-brand-logo {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.login-brand-name {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #fff;
+  span { color: #f5a623; }
+}
+
+.login-form-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+.login-header { margin-bottom: 36px; }
+
+.login-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.login-title {
+  font-family: 'Outfit', Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #f5a623;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.login-sub {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+
+.login-form { display: flex; flex-direction: column; gap: 20px; }
+.login-field { display: flex; flex-direction: column; gap: 8px; }
+
+.login-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+}
+
+.login-input-wrap { position: relative; display: flex; align-items: center; }
+
+.login-input-icon {
+  position: absolute;
+  left: 14px;
+  color: rgba(255,255,255,0.4);
+  display: flex;
+  pointer-events: none;
+}
+
+.login-input {
+  width: 100%;
+  padding: 13px 16px 13px 42px;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.92rem;
+  font-family: 'Outfit', system-ui, sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+
+  &::placeholder { color: rgba(255,255,255,0.25); }
+
+  &:focus {
+    border-color: #f5a623;
+    background: rgba(245,166,35,0.05);
+    box-shadow: 0 0 0 3px rgba(245,166,35,0.1);
+  }
+}
+
+.login-eye-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.3);
+  display: flex;
+  transition: color 0.15s;
+  &:hover { color: #f5a623; }
+}
+
+.login-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: 10px;
+  padding: 11px 16px;
+  font-size: 0.84rem;
+  color: #fca5a5;
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-5px); }
+  75%       { transform: translateX(5px); }
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 14px 30px;
+  background: #f5a623;
+  color: #1a1208;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Outfit', system-ui, sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(245,166,35,0.3);
+
+  &:hover:not(:disabled) {
+    background: #f9b83a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(245,166,35,0.45);
+  }
+  &:disabled { opacity: 0.6; cursor: not-allowed; }
+}
+
+.login-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(26,18,8,0.25);
+  border-top-color: #1a1208;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.login-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.82rem;
+
+  a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: color 0.18s;
+    &:hover { color: #fff; }
+  }
+}
+
+.login-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ════════ RIGHT — Off-white with orbiting cards ════════ */
+.login-right {
+  background: #f5f2ee;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Grid texture */
+.login-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26,18,8,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,18,8,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* Amber glow */
+.login-right::after {
+  content: '';
+  position: absolute;
+  width: 580px;
+  height: 580px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(245,166,35,0.1) 0%, transparent 65%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Center content */
+.login-right-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+/* Orbit dashed ring */
+.login-right-inner::before {
+  content: '';
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(245,166,35,0.3);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: ring-spin 60s linear infinite;
+}
+
+@keyframes ring-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Cards base style */
+.lr-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #1a1208;
+  border: 1px solid rgba(245,166,35,0.25);
+  border-radius: 40px;
+  padding: 10px 18px 10px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  white-space: nowrap;
+  svg { color: #f5a623; flex-shrink: 0; }
+
+  /* Each card orbits — starting at its own angle, all going full 360 */
+  top: 50%;
+  left: 50%;
+}
+
+/* Orbit: each card starts at a different angle on the ring (radius 210px) */
+.lr-card-1 { animation: orbit-0   40s linear infinite; }
+.lr-card-2 { animation: orbit-60  40s linear infinite; }
+.lr-card-3 { animation: orbit-120 40s linear infinite; }
+.lr-card-4 { animation: orbit-180 40s linear infinite; }
+.lr-card-5 { animation: orbit-240 40s linear infinite; }
+.lr-card-6 { animation: orbit-300 40s linear infinite; }
+
+/* Generate orbit keyframes for each starting angle */
+@keyframes orbit-0 {
+  from { transform: translate(-50%, -50%) rotate(0deg)   translateY(-280px) rotate(0deg);   }
+  to   { transform: translate(-50%, -50%) rotate(360deg) translateY(-280px) rotate(-360deg); }
+}
+@keyframes orbit-60 {
+  from { transform: translate(-50%, -50%) rotate(60deg)  translateY(-280px) rotate(-60deg);  }
+  to   { transform: translate(-50%, -50%) rotate(420deg) translateY(-280px) rotate(-420deg); }
+}
+@keyframes orbit-120 {
+  from { transform: translate(-50%, -50%) rotate(120deg) translateY(-280px) rotate(-120deg); }
+  to   { transform: translate(-50%, -50%) rotate(480deg) translateY(-280px) rotate(-480deg); }
+}
+@keyframes orbit-180 {
+  from { transform: translate(-50%, -50%) rotate(180deg) translateY(-280px) rotate(-180deg); }
+  to   { transform: translate(-50%, -50%) rotate(540deg) translateY(-280px) rotate(-540deg); }
+}
+@keyframes orbit-240 {
+  from { transform: translate(-50%, -50%) rotate(240deg) translateY(-280px) rotate(-240deg); }
+  to   { transform: translate(-50%, -50%) rotate(600deg) translateY(-280px) rotate(-600deg); }
+}
+@keyframes orbit-300 {
+  from { transform: translate(-50%, -50%) rotate(300deg) translateY(-280px) rotate(-300deg); }
+  to   { transform: translate(-50%, -50%) rotate(660deg) translateY(-280px) rotate(-660deg); }
+}
+
+/* Tagline */
+.lr-tagline {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  h2 {
+    font-family: 'Outfit', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1208;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+  p { font-size: 0.88rem; color: rgba(26,18,8,0.5); }
+}
+
+/* Stats */
+.lr-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: #1a1208;
+  border-radius: 16px;
+  padding: 16px 28px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.lr-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.lr-stat-num { font-size: 1.4rem; font-weight: 700; color: #f5a623; line-height: 1; }
+.lr-stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); white-space: nowrap; }
+.lr-stat-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.1); }
+
+/* ════════ RESPONSIVE ════════ */
+@media (max-width: 900px) {
+  .login-page { grid-template-columns: 1fr; }
+  .login-right { display: none; }
+  .login-left { padding: 32px 24px; }
+  .login-form-wrap { padding: 32px 0; }
+}
+
+/* ════════ HIDE BROWSER AUTOFILL ... ICON ════════ */
+.login-input::-webkit-contacts-auto-fill-button,
+.login-input::-webkit-credentials-auto-fill-button {
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+/* ════════ OR DIVIDER ════════ */
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255,255,255,0.2);
+  font-size: 0.8rem;
+
+  &::before, &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  span { white-space: nowrap; }
+}
+
+/* ════════ GOOGLE BUTTON ════════ */
+.login-google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 30px;
+  background: #fff;
+  color: #1a1208;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 40px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-family: 'Outfit', system-ui, sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+
+  &:hover {
+    background: #f5f5f5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  }
+}
+/* ════════ FIELD-LEVEL VALIDATION ════════ */
+.field-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #ef4444;
+  line-height: 1.4;
+  margin-top: 2px;
+
+  svg { flex-shrink: 0; margin-top: 1px; color: #ef4444; }
+}
+
+.login-input.input-error {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+
+  &:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+    background: rgba(239, 68, 68, 0.05);
+  }
+}

@@ -45,20 +45,7 @@
   transition: width 0.28s ease, min-width 0.28s ease;
 }
 
-.sidebar-collapsed .sidebar {
-  width: 68px;
-  min-width: 68px;
-}
 
-.sidebar-collapsed .sidebar .brand-text,
-.sidebar-collapsed .sidebar .nav-label,
-.sidebar-collapsed .sidebar .nav-section-label,
-.sidebar-collapsed .sidebar .nav-badge,
-.sidebar-collapsed .sidebar .nav-soon-tag,
-.sidebar-collapsed .sidebar .platform-dot,
-.sidebar-collapsed .sidebar .footer-meta {
-  display: none;
-}
 
 /* ── Brand row ── */
 .sidebar-brand {
@@ -154,30 +141,8 @@
   width: fit-content;
 }
 
-.sidebar-collapse-btn {
-  width: 26px;
-  height: 26px;
-  min-width: 26px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 7px;
-  color: rgba(255, 255, 255, 0.40);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.15s;
-  padding: 0;
-}
 
-.sidebar-collapse-btn:hover {
-  background: rgba(255, 255, 255, 0.13);
-  color: rgba(255, 255, 255, 0.82);
-}
 
-.sidebar-collapsed .sidebar-collapse-btn svg {
-  transform: rotate(180deg);
-}
 
 /* ── Nav body ── */
 .sidebar-body {
@@ -614,3 +579,74 @@
     display: none;
   }
 }
+/* ── Sidebar footer: user row + logout ── */
+.footer-user-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.footer-user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(245, 166, 35, 0.20);
+  color: #f5a623;
+  font-size: 0.76rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.footer-user-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.footer-user-name {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: rgba(245, 240, 230, 0.90);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.footer-user-role {
+  font-size: 0.62rem;
+  color: rgba(245, 240, 230, 0.35);
+  margin-top: 1px;
+}
+
+.footer-logout-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: rgba(245, 240, 230, 0.40);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.footer-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+/* Hide user-name and role text when sidebar is collapsed */

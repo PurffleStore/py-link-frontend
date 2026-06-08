@@ -7,74 +7,19 @@
       <h1 class="page-title">Dashboard</h1>
     </div>
     <div class="header-actions">
-      <button class="btn-about" (click)="toggleAbout()" type="button"
-        [class.btn-about-active]="aboutOpen">
-        <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-          <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-        </svg>
-        About Py-Link
-      </button>
       <a class="btn-primary" routerLink="/app/generate">
         <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
           <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0 1 12 2v5h4a1 1 0 0 1 .82 1.573l-7 10A1 1 0 0 1 8 18v-5H4a1 1 0 0 1-.82-1.573l7-10a1 1 0 0 1 1.12-.38z"/>
         </svg>
         New Generation
       </a>
+      <button class="btn-logout" type="button" (click)="logout()">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+          <path fill-rule="evenodd" d="M3 3a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h7a1 1 0 1 0 0-2H4V5h6a1 1 0 1 0 0-2H3zm10.293 4.293a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1 0 1.414l-3 3a1 1 0 0 1-1.414-1.414L14.586 11H8a1 1 0 1 1 0-2h6.586l-1.293-1.293a1 1 0 0 1 0-1.414z"/>
+        </svg>
+        Log out
+      </button>
     </div>
-  </div>
-
-  <!-- ══ ABOUT PANEL (collapsible) ══ -->
-  <div class="about-panel" [class.about-open]="aboutOpen">
-    <div class="about-inner">
-      <div class="about-left">
-        <div class="about-eyebrow">
-          <span class="about-dot"></span>
-          How Py-Link Works
-        </div>
-        <p class="about-desc">
-          Py-Link scans your selected news sources, identifies the most relevant tech and industry stories,
-          and automatically drafts professional LinkedIn posts and tweets — delivered straight to your inbox.
-          No manual research. No blank page. Just sharp, ready-to-publish content.
-        </p>
-        <div class="about-steps">
-          <div class="about-step">
-            <span class="about-step-num">01</span>
-            <div><strong>Configure sources</strong> — choose news feeds and set a lookback window</div>
-          </div>
-          <div class="about-step">
-            <span class="about-step-num">02</span>
-            <div><strong>Run the workflow</strong> — Py-Link scans, shortlists stories, and drafts posts</div>
-          </div>
-          <div class="about-step">
-            <span class="about-step-num">03</span>
-            <div><strong>Receive &amp; publish</strong> — review drafts in your inbox and post directly</div>
-          </div>
-        </div>
-      </div>
-      <div class="about-right">
-        <div class="about-stats">
-          <div class="about-stat">
-            <span class="about-stat-val">{{ state.totalSourceCount() }}</span>
-            <span class="about-stat-label">Curated sources</span>
-          </div>
-          <div class="about-stat">
-            <span class="about-stat-val">2</span>
-            <span class="about-stat-label">Platforms supported</span>
-          </div>
-          <div class="about-stat">
-            <span class="about-stat-val">∞</span>
-            <span class="about-stat-label">Posts possible</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="about-close" (click)="toggleAbout()" type="button">
-      <svg viewBox="0 0 16 16" fill="currentColor" width="11" height="11">
-        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
-      </svg>
-      Close
-    </button>
   </div>
 
   <!-- ══ KPI ROW ══ -->
@@ -157,7 +102,6 @@
             <div class="action-title">Generate Posts</div>
             <div class="action-desc">Configure and run your content workflow</div>
           </div>
-          <svg class="action-arrow" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 0 1 0-1.414L10.586 10 7.293 6.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414 0z"/></svg>
         </a>
 
         <a class="action-item" routerLink="/app/sources">
@@ -168,7 +112,6 @@
             <div class="action-title">Manage Sources</div>
             <div class="action-desc">{{ state.activeSourceCount() }} active · {{ state.totalSourceCount() }} total</div>
           </div>
-          <svg class="action-arrow" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 0 1 0-1.414L10.586 10 7.293 6.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414 0z"/></svg>
         </a>
 
         <a class="action-item" routerLink="/app/history">
@@ -179,7 +122,6 @@
             <div class="action-title">View History</div>
             <div class="action-desc">{{ state.runHistory().length }} past runs recorded</div>
           </div>
-          <svg class="action-arrow" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 0 1 0-1.414L10.586 10 7.293 6.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414 0z"/></svg>
         </a>
 
       </div>
@@ -215,6 +157,7 @@
           <span class="config-key">Email</span>
           <span class="config-val cv-email" [class.cv-unset]="!state.emailRecipient()">
             {{ state.emailRecipient() || 'Not set' }}
+            <a *ngIf="!state.emailRecipient()" class="cv-set-link" routerLink="/app/generate">Set email →</a>
           </span>
         </div>
         <div class="config-row config-row-last">
@@ -225,10 +168,18 @@
           </span>
         </div>
       </div>
-      <a class="btn-generate" routerLink="/app/generate">
-        <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0 1 12 2v5h4a1 1 0 0 1 .82 1.573l-7 10A1 1 0 0 1 8 18v-5H4a1 1 0 0 1-.82-1.573l7-10a1 1 0 0 1 1.12-.38z"/></svg>
-        Start New Generation
-      </a>
+
+      <!-- Status footer — fills remaining space, balances height with Quick Actions -->
+      <div class="config-footer">
+        <div class="config-footer-inner">
+          <span class="config-status-dot"></span>
+          <span class="config-status-label">Ready to generate</span>
+        </div>
+        <span class="config-status-sub">
+          {{ state.activeSourceCount() }} sources · {{ state.lookbackHours() }}h window
+        </span>
+      </div>
+
     </div>
 
   </div>
@@ -238,7 +189,6 @@
     <div class="tips-header">
       <span class="panel-pip"></span>
       Tips & Suggestions
-      <span class="tips-badge">Updated daily</span>
     </div>
     <div class="tips-grid">
 
@@ -373,34 +323,40 @@
           <span class="ps-sub">{{ state.postsToGenerate() }} post</span>
         </div>
 
-        <div class="ps-connector"></div>
+        <div class="ps-connector ps-connector-soon"></div>
 
-        <div class="pipeline-step ps-pending">
+        <div class="pipeline-step ps-soon">
           <div class="ps-icon-wrap">
             <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 0 1-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 0 1 .947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 0 1 2.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 0 1 2.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 0 1 .947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 0 1-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 0 1-2.287-.947zM10 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
           </div>
           <span class="ps-label">Optimize</span>
-          <span class="ps-sub">High score</span>
+          <span class="ps-sub ps-soon-badge">Coming soon</span>
         </div>
 
-        <div class="ps-connector"></div>
+        <div class="ps-connector ps-connector-soon"></div>
 
-        <div class="pipeline-step ps-pending">
+        <div class="pipeline-step ps-soon">
           <div class="ps-icon-wrap">
-            <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path d="M10.894 2.553a1 1 0 0 0-1.788 0l-7 14a1 1 0 0 0 1.169 1.409l5-1.429A1 1 0 0 0 9 15.571V11a1 1 0 1 1 2 0v4.571a1 1 0 0 0 .725.962l5 1.428a1 1 0 0 0 1.17-1.408l-7-14z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M3 3a1 1 0 0 0 0 2h11a1 1 0 1 0 0-2H3zm0 4a1 1 0 0 0 0 2h7a1 1 0 1 0 0-2H3zm0 4a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H3zm0 4a1 1 0 0 0 0 2h3a1 1 0 1 0 0-2H3zm10-4a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-1a1 1 0 0 0 0 2 1 1 0 0 0 0-2z"/></svg>
           </div>
           <span class="ps-label">Publish</span>
-          <span class="ps-sub">Auto</span>
+          <span class="ps-sub ps-soon-badge">Coming soon</span>
         </div>
 
       </div>
 
       <div class="pipeline-footer">
-        <span class="pf-label">Next run in</span>
-        <div class="pf-timer-bar">
-          <div class="pf-timer-fill"></div>
-        </div>
-        <span class="pf-time">12:42</span>
+        <span class="pf-label">Last run</span>
+        <span class="pf-last-run">
+          <ng-container *ngIf="state.runHistory().length > 0">
+            {{ state.runHistory()[0].ranAt | date:'MMM d, h:mm a' }}
+          </ng-container>
+          <ng-container *ngIf="state.runHistory().length === 0">
+            No runs yet
+          </ng-container>
+        </span>
+        <a class="pf-run-link" routerLink="/app/generate">Run now →</a>
+        <span class="pf-soon-note">Auto-scheduling — Coming soon</span>
       </div>
 
     </div>

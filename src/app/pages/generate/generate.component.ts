@@ -90,6 +90,12 @@ export class GenerateComponent implements OnDestroy {
   createFolderModalOpen = false;
   newFolderName = '';
 
+  // ── Toast notification ──
+  toastVisible = false;
+  toastMessage = '';
+  toastType: 'success' | 'warning' = 'success';
+  private toastTimer?: ReturnType<typeof setTimeout>;
+
   // ── Source URL map (for verification links) ──
   private readonly SOURCE_URLS: Record<string, string> = {
     'anthropic news': 'https://www.anthropic.com/news',
@@ -171,7 +177,7 @@ export class GenerateComponent implements OnDestroy {
     'Scanning your selected sources…',
     'Reading the latest AI headlines…',
     'Filtering for high-signal stories…',
-    'Shortlisting LinkedIn-worthy content…',
+    'Shortlisting relevant content for LinkedIn…',
     'Analysing audience relevance…',
     'Building post angles…',
     'Crafting professional narratives…',
@@ -183,8 +189,8 @@ export class GenerateComponent implements OnDestroy {
   private readonly AI_MSGS_TW: readonly string[] = [
     'Scanning your selected sources…',
     'Reading the latest AI headlines…',
-    'Filtering tweet-worthy stories…',
-    'Shortlisting high-engagement topics…',
+    'Filtering for high-signal stories…',
+    'Shortlisting relevant topics for Twitter…',
     'Building sharp tweet angles…',
     'Drafting 280-char posts…',
     'Checking tone and punch…',
@@ -209,7 +215,7 @@ export class GenerateComponent implements OnDestroy {
     localStorage.removeItem('cfg_email'); // clear any old saved email
   }
 
-  ngOnDestroy() { this.clearAllTimers(); }
+  ngOnDestroy() { this.clearAllTimers(); clearTimeout(this.toastTimer); }
 
   get stepIndex(): number { return this.steps.indexOf(this.currentStep); }
 
@@ -300,9 +306,10 @@ export class GenerateComponent implements OnDestroy {
 
   enableEmailEdit(): void {
     this.isEmailEditMode = true;
+    this.emailTouched    = true;
     this.emailDraft = this.localEmail;
     this.emailError = '';
-    this.emailHint = '';
+    this.emailHint  = '';
   }
 
   onEmailInput(): void {
@@ -446,6 +453,30 @@ export class GenerateComponent implements OnDestroy {
     if (this.activeFolderFilter === id) this.activeFolderFilter = null;
   }
 
+  // ── Toast notification ──
+  showToast(message: string, type: 'success' | 'warning' = 'success'): void {
+    clearTimeout(this.toastTimer);
+    this.toastMessage = message;
+    this.toastType = type;
+    this.toastVisible = true;
+    this.toastTimer = setTimeout(() => {
+      this.toastVisible = false;
+      this.cdr.markForCheck();
+    }, 3000);
+  }
+
+  enableAllSources(): void {
+    this.state.selectAllSources();
+    const count = this.state.totalSourceCount();
+    this.showToast(`All ${count} sources enabled`, 'success');
+  }
+
+  disableAllSources(): void {
+    this.state.deselectAllSources();
+    const count = this.state.totalSourceCount();
+    this.showToast(`All ${count} sources disabled — at least 1 is needed to generate`, 'warning');
+  }
+
   toggleFolderFilter(id: string): void {
     this.activeFolderFilter = this.activeFolderFilter === id ? null : id;
   }
@@ -571,7 +602,7 @@ export class GenerateComponent implements OnDestroy {
     this.cdr.detectChanges();
   }
 
-  done(): void { this.router.navigate(['/dashboard']); }
+  done(): void { this.router.navigate(['/app/dashboard']); }
 
   runAgain(): void {
     this.clearAllTimers();

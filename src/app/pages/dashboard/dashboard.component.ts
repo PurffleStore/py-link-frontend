@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AppStateService } from '../../services/app-state.service';
+import { AuthService } from '../../login/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,19 +12,18 @@ import { AppStateService } from '../../services/app-state.service';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  aboutOpen = false;
 
-  constructor(public state: AppStateService) {}
+  constructor(public state: AppStateService, private auth: AuthService) {}
+
+  logout(): void {
+    this.auth.logout(); // clears sessionStorage → navigates to /login
+  }
 
   get greeting(): string {
     const h = new Date().getHours();
     if (h < 12) return 'Good morning';
     if (h < 18) return 'Good afternoon';
     return 'Good evening';
-  }
-
-  toggleAbout(): void {
-    this.aboutOpen = !this.aboutOpen;
   }
 
   statusClass(status: string): string {

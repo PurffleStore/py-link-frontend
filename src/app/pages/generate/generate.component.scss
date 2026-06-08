@@ -37,6 +37,18 @@
   font-family: var(--sans);
 }
 
+/* ── Global scroll — matches Home page behaviour ── */
+html, body {
+  height: auto !important;
+  overflow-y: auto !important;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: rgba(180,150,100,0.30); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(180,150,100,0.55); }
+
 /* ════════════════════════
    SHELL
 ════════════════════════ */
@@ -528,7 +540,12 @@
   box-shadow: 0 7px 22px rgba(245, 166, 35, 0.44);
 }
 
-.btn-continue:disabled { opacity: 0.40; cursor: not-allowed; }
+.btn-continue:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
 
 .btn-generate-now {
   display: flex;
@@ -839,6 +856,10 @@
 .edit-email-btn:hover { background: rgba(245, 166, 35, 0.22); }
 
 .email-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding: 12px 14px;
   background: var(--surface-warm);
   border-radius: 9px;
@@ -849,6 +870,10 @@
   font-size: 0.86rem;
   color: var(--text-primary);
   font-weight: 600;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .email-placeholder {
@@ -1461,15 +1486,22 @@
 .modal-input:focus { border-color: var(--amber); box-shadow: 0 0 0 3px rgba(245,166,35,0.10); }
 
 .modal-hint {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: block;
   font-size: 0.76rem;
+  line-height: 1.6;
   color: var(--text-secondary);
   background: #f0fdf4;
   border: 1px solid #bbf7d0;
   border-radius: 8px;
   padding: 8px 12px;
+  margin-top: 4px;
+}
+
+/* Inline SVG icon inside modal-hint (used in Add Source modal) */
+.modal-hint > svg:first-child {
+  display: inline;
+  vertical-align: middle;
+  margin-right: 6px;
 }
 
 /* Destination radio cards */
@@ -2087,6 +2119,16 @@
   animation: checkPop 0.25s cubic-bezier(0.34,1.56,0.64,1);
 }
 
+/* Completed config card — subtle green left border */
+.card-complete {
+  border-left: 3.5px solid #16a34a !important;
+}
+
+/* Email card when invalid and touched — amber-red left border hint */
+.card-email-required {
+  border-left: 3.5px solid #dc2626 !important;
+}
+
 @keyframes checkPop {
   from { transform: scale(0); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
@@ -2430,21 +2472,21 @@
    PREMIUM CONFIGURATION SUMMARY TABLE
 ═══════════════════════════════════════════════════════ */
 .premium-summary {
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 .ps-title {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   letter-spacing: -0.3px;
 }
 
 .ps-subtitle {
-  font-size: 0.82rem;
+  font-size: 0.80rem;
   color: var(--text-tertiary);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   line-height: 1.5;
 }
 
@@ -2490,7 +2532,7 @@
 
 /* Setting column */
 .ps-setting {
-  padding: 18px 20px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -2519,7 +2561,7 @@
 
 /* Selection column */
 .ps-selection {
-  padding: 18px 20px;
+  padding: 14px 20px;
   width: 180px;
 }
 
@@ -2550,7 +2592,7 @@
 
 /* Details column */
 .ps-details {
-  padding: 18px 20px;
+  padding: 14px 20px;
   font-size: 0.82rem;
   color: var(--text-tertiary);
   line-height: 1.5;
@@ -2558,7 +2600,7 @@
 
 /* Status column */
 .ps-status {
-  padding: 18px 20px;
+  padding: 14px 20px;
   text-align: right;
   width: 80px;
 }
